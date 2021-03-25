@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'App\Http\Controllers\PrincipalHomeController@index');
+Route::get('/usuarios', 'App\Http\Controllers\PrincipalHomeController@index');
+Route::get('/usuarios/nuevo', 'App\Http\Controllers\PrincipalHomeController@index');
 
 Route::get('/employee', 'App\Http\Controllers\EmployeeController@index');
 Route::get('/employee/index', 'App\Http\Controllers\EmployeeController@index');

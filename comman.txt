@@ -1,0 +1,35 @@
+docker-compose run --rm composer update
+docker-compose run --rm npm run dev
+docker-compose run --rm artisan migrate
+
+Model:
+docker-compose run --rm artisan make:model YourModelName
+Controller:
+docker-compose run --rm artisan make:controller YourControllerName
+Migration:
+docker-compose run --rm artisan make:migration create_users_table
+
+######
+Crear y compilar componentes de reactjs y laravel
+
+docker-compose run --rm composer create-project --prefer-dist laravel/laravel react-laravel
+docker-compose run --rm composer require laravel/ui
+docker-compose run --rm artisan ui react
+docker-compose run --rm npm install
+docker-compose run --rm npm install resolve-url-loader@^3.1.2 --save-dev --legacy-peer-deps
+docker-compose run --rm npm run watch-poll
+
+
+docker-compose run --rm npm install react-router-dom
+
+Creacion de migraciones para Laravel
+docker-compose run --rm artisan make:migration create_role_table
+docker-compose run --rm artisan make:migration create_employee_table
+
+Creacion de modelos en laravel
+docker-compose run --rm artisan make:model Employee
+docker-compose run --rm artisan make:model Role
+
+Creacion del controller
+docker-compose run --rm artisan make:controller API/EmployeeController 
+

@@ -24,3 +24,7 @@ Route::get('/employee/list', 'App\Http\Controllers\API\EmployeeController@list')
 Route::get('/employee/get/{id}', 'App\Http\Controllers\API\EmployeeController@get');
 Route::put('/employee/update/{id}', 'App\Http\Controllers\API\EmployeeController@update');
 Route::delete('/employee/delete/{id}', 'App\Http\Controllers\API\EmployeeController@delete');
+
+Route::get('/catalogos/roles', 'App\Http\Controllers\API\UsuariosController@list_roles');
+Route::get('/catalogos/estados', 'App\Http\Controllers\API\UsuariosController@list_catEstados');
+Route::get('/catalogos/municipios/{id}', 'App\Http\Controllers\API\UsuariosController@list_catMunicipios');
