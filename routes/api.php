@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
@@ -28,3 +28,5 @@ Route::delete('/employee/delete/{id}', 'App\Http\Controllers\API\EmployeeControl
 Route::get('/catalogos/roles', 'App\Http\Controllers\API\UsuariosController@list_roles');
 Route::get('/catalogos/estados', 'App\Http\Controllers\API\UsuariosController@list_catEstados');
 Route::get('/catalogos/municipios/{id}', 'App\Http\Controllers\API\UsuariosController@list_catMunicipios');
+
+Route::post('/usuarios/create', 'App\Http\Controllers\API\UsuariosController@create');

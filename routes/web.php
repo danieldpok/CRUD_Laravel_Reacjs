@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/*
+Route::get('/', function () {
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+});
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->name('dashboard');
+*/
+
 Route::get('/', 'App\Http\Controllers\PrincipalHomeController@index');
 Route::get('/usuarios', 'App\Http\Controllers\PrincipalHomeController@index');
 Route::get('/usuarios/nuevo', 'App\Http\Controllers\PrincipalHomeController@index');
@@ -22,5 +39,3 @@ Route::get('/employee/index', 'App\Http\Controllers\EmployeeController@index');
 Route::get('/employee/list', 'App\Http\Controllers\EmployeeController@index');
 Route::get('/employee/form', 'App\Http\Controllers\EmployeeController@index');
 Route::get('/employee/edit/{num}', 'App\Http\Controllers\EmployeeController@index');
-
-

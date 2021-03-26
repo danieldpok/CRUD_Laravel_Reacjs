@@ -27,4 +27,12 @@ usuarios.list_catMunicipios = async (id) =>{
     return res;
 }
 
+usuarios.save = async (data) =>{
+    const UrlSave = baseUrl + "/usuarios/create"
+    const res = await axios.post(UrlSave, data)
+        .then(response => { return response.data })
+        .catch(error => { return error;})
+    return res;
+}
+
 export default usuarios

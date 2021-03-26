@@ -29,6 +29,10 @@ docker-compose run --rm artisan make:migration create_employee_table
 Creacion de modelos en laravel
 docker-compose run --rm artisan make:model Employee
 docker-compose run --rm artisan make:model Role
+docker-compose run --rm artisan make:model Personas
+docker-compose run --rm artisan make:model Roles
+docker-compose run --rm artisan make:model CuentaBancaria
+docker-compose run --rm artisan make:model Direccion
 
 Creacion del controller
 docker-compose run --rm artisan make:controller API/EmployeeController 
