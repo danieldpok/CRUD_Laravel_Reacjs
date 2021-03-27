@@ -37,3 +37,5 @@ docker-compose run --rm artisan make:model Direccion
 Creacion del controller
 docker-compose run --rm artisan make:controller API/EmployeeController 
 
+docker-compose run --rm artisan make:request LoginRequest
+

@@ -412,16 +412,16 @@ const UsuarioNuevo = () => {
                   <input
                     type="password"
                     className="form-control"
-                    name="password_repeat"
+                    name="password_confirmation"
                     placeholder="Confirmar Password"
                     ref={register({
                       validate: (value) =>
                         value === password.current || "El password no coincide",
                     })}
                   />
-                  {errors.password_repeat && (
+                  {errors.password_confirmation && (
                     <p className="text-validate">
-                      {errors.password_repeat.message}
+                      {errors.password_confirmation.message}
                     </p>
                   )}
                 </div>

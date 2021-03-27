@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateUsuarioRequest;
 use App\Models\CuentaBancaria;
 use App\Models\Direccion;
 use App\Models\Personas;
@@ -39,7 +40,16 @@ class UsuariosController extends Controller
 
     }
 
-    public function create(Request $request){
+    public function view ($id){
+        $data = User::all()->where('estatus', '!=',2);
+        $response['data'] = $data;
+        $response['success'] = true;
+        return $response;
+
+
+    }
+
+    public function create(CreateUsuarioRequest $request){
 
         $result = DB::transaction(function () use ($request) {
 

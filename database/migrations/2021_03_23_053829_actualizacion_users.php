@@ -18,6 +18,7 @@ class ActualizacionUsers extends Migration
             $table->foreign('personas_idpersona')->references('idpersona')->on('personas');
             $table->integer('idrol')->unsigned();
             $table->foreign('idrol')->references('id')->on('cat_roles');
+            $table->boolean('estatus')->default(0);
         });
     }
 
