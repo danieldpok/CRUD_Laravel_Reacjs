@@ -11,16 +11,9 @@ class Personas extends Model
 
     protected $table = "personas";
 
-    protected  $primaryKey = "idpersona";
+    protected  $primaryKey = "id_persona";
 
     public $timestamps = true;
 
-    public function direccion(){
-        return $this->hasMany(Direccion::class, 'id', 'id_relacion');
-    }
-
-    public function cuentabancaria(){
-        return $this->belongsTo(CuentaBancaria::class, 'personas_idpersona', 'idpersona' );
-    }
 
 }

@@ -14,9 +14,7 @@ class CuentaBancaria extends Migration
     public function up()
     {
         Schema::create('cuenta_bancaria', function (Blueprint $table) {
-            $table->increments('idcuenta_bancaria');
-            $table->integer('personas_idpersona')->unsigned();
-            $table->foreign('personas_idpersona')->references('idpersona')->on('personas');
+            $table->increments('id_cuenta_bancaria');
             $table->integer('clabe');
             $table->integer('cuenta');
             $table->string('banco',30);

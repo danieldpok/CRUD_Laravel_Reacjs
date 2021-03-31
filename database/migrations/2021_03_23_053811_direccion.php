@@ -14,19 +14,16 @@ class Direccion extends Migration
     public function up()
     {
         Schema::create('direccion', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id_direccion');
             $table->string('calle',45);
             $table->string('colonia',45);
-            $table->string('numint',15);
-            $table->string('numext',15);
+            $table->string('numint',15)->nullable();
+            $table->string('numext',15)->nullable();
             $table->integer('estado')->unsigned();
             $table->foreign('estado')->references('id')->on('cat_dir_estados');
             $table->integer('municipio')->unsigned();
             $table->foreign('municipio')->references('id')->on('cat_dir_municipios');
             $table->string('cp',10);
-            $table->tinyInteger('tipo'); //1=direccion domicilio 2=direccion fiscal 3=direccion proyecto
-            $table->integer('id_relacion')->unsigned();
-            $table->tinyInteger('tipo_relacion'); //1=relacion con persona 2=relacion con proyectos
             $table->timestamps();
         });
     }

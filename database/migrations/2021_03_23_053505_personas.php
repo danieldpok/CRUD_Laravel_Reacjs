@@ -14,7 +14,7 @@ class Personas extends Migration
     public function up()
     {
         Schema::create('personas', function (Blueprint $table) {
-            $table->increments('idpersona');
+            $table->increments('id_persona');
             $table->string('nombre',45);
             $table->string('apellidoP',45);
             $table->string('apellidoM',45)->nullable();
@@ -24,8 +24,8 @@ class Personas extends Migration
             $table->string('razon_social',120)->nullable();
             $table->string('ine',30)->nullable();
             $table->boolean('tipo_persona')->nullable();
-            $table->integer('telefono1')->nullable();
-            $table->integer('telefono2')->nullable();
+            $table->string('telefono1',10)->nullable();
+            $table->string('telefono2',10)->nullable();
             $table->timestamps();
         });
     }

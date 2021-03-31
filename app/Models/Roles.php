@@ -13,5 +13,14 @@ class Roles extends Model
 
     protected  $primaryKey = "id";
 
-    public $timestamps = true;
+    protected $fillable = [
+        'rol',
+    ];
+
+    protected $hidden = [
+        'estatus',
+        'id'
+    ];
+
+    public $timestamps = false;
 }

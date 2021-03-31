@@ -14,11 +14,12 @@ class RevisionActividades extends Migration
     public function up()
     {
         Schema::create('revision_actividades', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('iduser')->unsigned();
-            $table->foreign('iduser')->references('id')->on('users');
-            $table->integer('idcaptura_servicio')->unsigned();
-            $table->foreign('idcaptura_servicio')->references('id')->on('captura_servicio');
+            $table->increments('id_revision_actividades');
+            $table->foreignId('id_user')->nullable()->index();
+            //$table->integer('iduser')->unsigned();
+            //$table->foreign('iduser')->references('id')->on('users');
+            $table->integer('id_captura_servicio')->unsigned();
+            $table->foreign('id_captura_servicio')->references('id_captura_servicio')->on('captura_servicio');
             $table->integer('proceso_realizado');
             $table->timestamps();
         });

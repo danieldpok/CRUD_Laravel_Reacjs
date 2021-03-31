@@ -14,7 +14,7 @@ class CapturaServicio extends Migration
     public function up()
     {
         Schema::create('captura_servicio', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id_captura_servicio');
             $table->integer('tipo_computo');
             $table->string('legacy_modelo',45);
             $table->string('legacy_modelo_serie',45);
@@ -30,8 +30,8 @@ class CapturaServicio extends Migration
             $table->string('hostname_nuevo',45);
             $table->string('usuario_dominio',45);
             $table->string('observaciones',500);
-            $table->integer('idasignacion_actividades')->unsigned();
-            $table->foreign('idasignacion_actividades')->references('id')->on('asignacion_actividades');
+            $table->integer('id_asignacion_actividades')->unsigned();
+            $table->foreign('id_asignacion_actividades')->references('id_asignacion_actividades')->on('asignacion_actividades');
             $table->boolean('estatus')->default(0);
             /*
              *  0= iniciado

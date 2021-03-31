@@ -11,11 +11,8 @@ class Direccion extends Model
 
     protected $table = "direccion";
 
-    protected  $primaryKey = "id";
+    protected  $primaryKey = "id_direccion";
 
     public $timestamps = true;
 
-    public function Persona(){
-        return $this->belongsTo(Personas::class, 'id_relacion','idpersona');
-    }
 }

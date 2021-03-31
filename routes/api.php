@@ -30,6 +30,7 @@ Route::get('/catalogos/estados', 'App\Http\Controllers\API\UsuariosController@li
 Route::get('/catalogos/municipios/{id}', 'App\Http\Controllers\API\UsuariosController@list_catMunicipios');
 
 Route::post('/usuarios/create', 'App\Http\Controllers\API\UsuariosController@create');
-Route::post('/usuarios/view', 'App\Http\Controllers\API\UsuariosController@view');
-Route::post('/usuarios/edit/{id}', 'App\Http\Controllers\API\UsuariosController@edit');
-Route::post('/usuarios/delete/{id}', 'App\Http\Controllers\API\UsuariosController@delete');
+Route::get('/usuarios/list', 'App\Http\Controllers\API\UsuariosController@list');
+Route::get('/usuarios/get/{id}', 'App\Http\Controllers\API\UsuariosController@get');
+Route::put('/usuarios/edit/{id}', 'App\Http\Controllers\API\UsuariosController@edit');
+Route::delete('/usuarios/delete/{id}', 'App\Http\Controllers\API\UsuariosController@delete');

@@ -14,13 +14,13 @@ class ServicetagProyectos extends Migration
     public function up()
     {
         Schema::create('servicetag_proyectos', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id_servicetag_proyectos');
             $table->string('servicetag',45);
             $table->string('tipo',45);
             $table->string('modelo',45);
             $table->string('marca',45);
-            $table->integer('proyectos_idproyecto')->unsigned();
-            $table->foreign('proyectos_idproyecto')->references('idproyecto')->on('proyectos');
+            $table->integer('id_proyecto')->unsigned();
+            $table->foreign('id_proyecto')->references('id_proyecto')->on('proyectos');
             $table->timestamps();
         });
     }

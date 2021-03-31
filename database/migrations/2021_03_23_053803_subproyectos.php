@@ -14,9 +14,9 @@ class Subproyectos extends Migration
     public function up()
     {
         Schema::create('subproyectos', function (Blueprint $table) {
-            $table->increments('idsubproyecto');
-            $table->integer('proyectos_idproyecto')->unsigned();
-            $table->foreign('proyectos_idproyecto')->references('idproyecto')->on('proyectos');
+            $table->increments('id_subproyecto');
+            $table->integer('id_proyecto')->unsigned();
+            $table->foreign('id_proyecto')->references('id_proyecto')->on('proyectos');
             $table->integer('nombre');
             $table->timestamps();
         });

@@ -35,4 +35,12 @@ usuarios.save = async (data) =>{
     return res;
 }
 
+usuarios.get = async (data) => {
+    const UrlGet = baseUrl + "/usuarios/get/" + id
+    const res = await axios.get(UrlGet, data)
+       .then(response => { return response.data })
+       .catch(error => { return error;})
+    return res;
+}
+
 export default usuarios

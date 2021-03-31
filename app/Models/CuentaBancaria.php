@@ -11,11 +11,8 @@ class CuentaBancaria extends Model
 
     protected $table = "cuenta_bancaria";
 
-    protected  $primaryKey = "idcuenta_bancaria";
+    protected  $primaryKey = "id_cuenta_bancaria";
 
     public $timestamps = true;
 
-    public function Persona(){
-        return $this->belongsTo(Personas::class, 'personas_idpersona','idpersona');
-    }
 }

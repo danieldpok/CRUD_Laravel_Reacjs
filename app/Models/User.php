@@ -24,11 +24,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'id',
         'name',
         'email',
         'password',
         'estatus'
     ];
+
 
     /**
      * The attributes that should be hidden for arrays.
@@ -60,7 +62,26 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    protected  $primaryKey = "id";
+
     public function Persona(){
-        return $this->belongsTo(Personas::class, 'personas_idpersona','idpersona');
+        return $this->belongsTo(Personas::class, 'id_persona','id_persona');
     }
+
+    public function Rol(){
+        return $this->belongsTo(Roles::class, 'id_rol','id');
+    }
+
+    public function DireccionD(){
+        return $this->belongsTo(Direccion::class, 'id_direcciond', 'id_direccion');
+    }
+
+    public function DireccionDF(){
+        return $this->belongsTo(Direccion::class, 'id_direcciondf', 'id_direccion');
+    }
+
+    public function Cuentabancaria(){
+        return $this->belongsTo(CuentaBancaria::class, 'id_cuenta_bancaria', 'id_cuenta_bancaria' );
+    }
+
 }

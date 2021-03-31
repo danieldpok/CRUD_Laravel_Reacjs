@@ -11,7 +11,7 @@ class CatRoles extends Model
 
     protected $table = "cat_roles";
 
-    protected  $primaryKey = "id";
+    protected  $primaryKey = "id_rol";
 
     protected $fillable = [
       'rol,estatus'

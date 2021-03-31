@@ -14,7 +14,7 @@ class AsignacionActividades extends Migration
     public function up()
     {
         Schema::create('asignacion_actividades', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id_asignacion_actividades');
             $table->string('localidad',45);
             $table->string('nombre_encargado',45);
             $table->string('departamento_encargado',45);
