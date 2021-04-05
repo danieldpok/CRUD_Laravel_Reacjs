@@ -54,9 +54,10 @@ const Usuarios = () => {
     rows: [],
   });
 
-  const onDeleteUsuario = (id) => {
+  const onDeleteUsuario = async (id) => {
     if (window.confirm("Seguro que desea eliminar el usuario")) {
-
+      const res = await usuariosServices.delete(id);
+      getUsuarios();
       toast("Usuario Eliminado", { type: "error", autoClose: 2000 });
     }
   };
@@ -65,7 +66,6 @@ const Usuarios = () => {
     const res = await usuariosServices.list();
     const nuevo = [];
     res.data.forEach((doc) => {
-      console.log(doc);
       nuevo.push({
         nombre: doc.persona.nombre,
         usuario: doc.name,

@@ -61,7 +61,7 @@ usuarios.update = async (id) => {
 
 usuarios.delete = async (id) => {
     const UrlDelete = baseUrl + "/delete/" + id
-    const res = await axios.get(UrlDelete, id)
+    const res = await axios.put(UrlDelete, id)
         .then(response => { return response.data })
         .catch(error => { return error; })
     return res;

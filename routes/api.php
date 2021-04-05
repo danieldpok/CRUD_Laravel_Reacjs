@@ -33,4 +33,4 @@ Route::get('/usuarios/list', 'App\Http\Controllers\API\UsuariosController@list')
 Route::get('/usuarios/get/{id}', 'App\Http\Controllers\API\UsuariosController@get');
 Route::post('/usuarios/create', 'App\Http\Controllers\API\UsuariosController@create');
 Route::put('/usuarios/edit/{id}', 'App\Http\Controllers\API\UsuariosController@edit');
-Route::delete('/usuarios/delete/{id}', 'App\Http\Controllers\API\UsuariosController@delete');
+Route::put('/usuarios/delete/{id}', 'App\Http\Controllers\API\UsuariosController@delete');
