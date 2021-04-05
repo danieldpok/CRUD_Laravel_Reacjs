@@ -4,6 +4,7 @@ import Rutas from "../../components/Rutas";
 import { MDBBtn } from "mdbreact";
 import Tabla from "../../components/Tabla";
 import { toast } from "react-toastify";
+import usuariosServices from "../../components/services/Usuarios"
 
 const Usuarios = () => {
   const columnas = [
@@ -61,19 +62,17 @@ const Usuarios = () => {
   };
 
   const getUsuarios = async () => {
-    /*
-  db.collection("usuarios").onSnapshot((querySnapshot) => {
-    const docs = [];
+    const res = await usuariosServices.list();
     const nuevo = [];
-    querySnapshot.forEach((doc) => {
-      docs.push({ ...doc.data(), id: doc.id });
+    res.data.forEach((doc) => {
+      console.log(doc);
       nuevo.push({
-        nombre: doc.data().nombre,
-        usuario: doc.data().usuario,
-        email: doc.data().email,
-        rol: doc.data().cat_rol,
-        telefono: doc.data().telefono1,
-        lugar: doc.data().d_estado,
+        nombre: doc.persona.nombre,
+        usuario: doc.name,
+        email: doc.email,
+        rol: doc.rol.rol,
+        telefono: doc.persona.telefono1,
+        lugar: doc.direccion_d.estado.nombre,
         borrar: (
           <MDBBtn
             onClick={() => {
@@ -91,9 +90,7 @@ const Usuarios = () => {
       columns: columnas,
       rows: nuevo,
     });
-  });
 
-  */
   };
 
   useEffect(() => {

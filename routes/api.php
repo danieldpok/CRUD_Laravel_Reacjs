@@ -29,8 +29,8 @@ Route::get('/catalogos/roles', 'App\Http\Controllers\API\UsuariosController@list
 Route::get('/catalogos/estados', 'App\Http\Controllers\API\UsuariosController@list_catEstados');
 Route::get('/catalogos/municipios/{id}', 'App\Http\Controllers\API\UsuariosController@list_catMunicipios');
 
-Route::post('/usuarios/create', 'App\Http\Controllers\API\UsuariosController@create');
 Route::get('/usuarios/list', 'App\Http\Controllers\API\UsuariosController@list');
 Route::get('/usuarios/get/{id}', 'App\Http\Controllers\API\UsuariosController@get');
+Route::post('/usuarios/create', 'App\Http\Controllers\API\UsuariosController@create');
 Route::put('/usuarios/edit/{id}', 'App\Http\Controllers\API\UsuariosController@edit');
 Route::delete('/usuarios/delete/{id}', 'App\Http\Controllers\API\UsuariosController@delete');

@@ -40,7 +40,8 @@ class UsuariosController extends Controller
     }
 
     public function list (){
-        $data = User::with("Persona", "Rol", "DireccionD","DireccionDF")->where('estatus', '!=',2)->get();
+        $data = User::with("Persona", "Rol", "DireccionD","DireccionDF","DireccionD.Estado")
+        ->where('estatus', '!=',2)->get();
         $response['data'] = $data;
         $response['success'] = true;
         return $response;
@@ -105,13 +106,12 @@ class UsuariosController extends Controller
                 $usuario->save();
 
                $response['message'] = "Save Succes";
-               $response['succes'] = true;
-
+               $response['success'] = true;
 
             } catch (\Exception $e) {
                 DB::rollback();
                 $response['message'] = $e->getMessage();
-                $response['succes'] = false;
+                $response['success'] = false;
             }
 
             return $response;
@@ -176,13 +176,13 @@ class UsuariosController extends Controller
                 $direcciondf->save();
 
                 $response['message'] = "Save Succes";
-                $response['succes'] = true;
+                $response['success'] = true;
 
 
             } catch (\Exception $e) {
                 DB::rollback();
                 $response['message'] = $e->getMessage();
-                $response['succes'] = false;
+                $response['success'] = false;
             }
 
             return $response;
@@ -197,7 +197,7 @@ class UsuariosController extends Controller
         try {
 
             //$data = Employee::with("roleModelFuncion")->find($id);
-            $data = User::with("Persona", "Rol", "Direccion", "Cuentabancaria")->find($id);
+            $data = User::with("Persona", "Rol", "DireccionD","DireccionDF", "Cuentabancaria")->find($id);
 
             if ($data) {
                 $response['data'] = $data;
@@ -227,13 +227,13 @@ class UsuariosController extends Controller
                 $usuario->save();
 
                 $response['message'] = "Save Succes";
-                $response['succes'] = true;
+                $response['success'] = true;
 
 
             } catch (\Exception $e) {
                 DB::rollback();
                 $response['message'] = $e->getMessage();
-                $response['succes'] = false;
+                $response['success'] = false;
             }
 
             return $response;

@@ -16,4 +16,5 @@ class CatDirEstado extends Model
     protected $fillable = [
       'nombre'
     ];
+    
 }

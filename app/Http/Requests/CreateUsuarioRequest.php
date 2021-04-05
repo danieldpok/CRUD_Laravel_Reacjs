@@ -18,11 +18,13 @@ class CreateUsuarioRequest extends LaravelFormRequest
 
     protected function failedValidation(Validator $validator)
     {
+        
         $errors = (new ValidationException($validator))->errors();
 
         throw new HttpResponseException(
             response()->json(['errors' => $errors], JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
         );
+        
     }
 
     public function authorize()
@@ -46,7 +48,7 @@ class CreateUsuarioRequest extends LaravelFormRequest
             'curp' => 'required|max:20',
             'num_seguro_social' => 'required|max:20',
             'telefono1' => 'required|max:10',
-            'tipo_persona' => 'required',
+            'tipo_persona_sat' => 'required',
             'd_calle' => 'required|max:45',
             'd_colonia' => 'required|max:45',
             'd_estado' => 'required',
@@ -94,7 +96,7 @@ class CreateUsuarioRequest extends LaravelFormRequest
             'telefono1.max' => 'Por favor, ingreso un numero de 10 digitos',
             'telefono1.numeric' => 'Por favor, digita solo numeros telefonicos',
             'telefono1.required' => 'Por favor, digita un numero telefonico',
-            'tipo_persona.required' => 'Por favor, indica el tipo persona',
+            'tipo_persona_sat.required' => 'Por favor, indica el tipo persona',
             'd_colonia.required' => 'Por favor, indica una colonia',
             'd_cp.required' => 'Por favor, indica un cp',
 

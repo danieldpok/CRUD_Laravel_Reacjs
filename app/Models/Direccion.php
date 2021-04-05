@@ -15,4 +15,12 @@ class Direccion extends Model
 
     public $timestamps = true;
 
+    public function Estado(){
+        return $this->belongsTo(CatDirEstado::class, 'estado','id');
+    }
+
+    public function Municipio(){
+        return $this->belongsTo(CatDirMunicipio::class, 'municipio','id');
+    }
+
 }

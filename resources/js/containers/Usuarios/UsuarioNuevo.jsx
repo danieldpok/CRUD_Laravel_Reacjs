@@ -1,7 +1,7 @@
 import React, { useState, useRef, useContext, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import usuariosServices from "../../components/services/Usuarios"
 
@@ -14,7 +14,7 @@ const UsuarioNuevo = () => {
 
   const { register, handleSubmit, errors, watch } = useForm();
   const form = useRef(null);
-  //const history = useHistory();
+  const history = useHistory();
   const password = useRef({});
   const razon_social = useRef({});
   const [validation, setValidation] = useState(initialValidation);
@@ -24,6 +24,7 @@ const UsuarioNuevo = () => {
   const [estados, setEstados] = useState([]);
   const [municipios, setMunicipios] = useState([]);
   const [municipiosDF, setMunicipiosDF] = useState([]);
+  const [buttonState, setButtonState] = useState(false);
 
   const getRoles = async () => {
     const res = await usuariosServices.listCatRoles();
@@ -31,21 +32,22 @@ const UsuarioNuevo = () => {
   }
 
   const getEstados = async () => {
-      const res = await usuariosServices.listCatEstados();
-      setEstados(res.data);
+    const res = await usuariosServices.listCatEstados();
+    setEstados(res.data);
   }
 
   const getMunicipio = async (id) => {
-      const res = await usuariosServices.list_catMunicipios(id);
-      setMunicipios(res.data);
+    const res = await usuariosServices.list_catMunicipios(id);
+    setMunicipios(res.data);
   }
 
   const getMunicipioDF = async (id) => {
-      const res = await usuariosServices.list_catMunicipios(id);
-      setMunicipiosDF(res.data);
+    const res = await usuariosServices.list_catMunicipios(id);
+    setMunicipiosDF(res.data);
   }
 
-  const hSubmit = () => {
+  const hSubmit = async () => {
+    setButtonState(true);
     const formDara = new FormData(form.current);
     const usuario = {
       nombre: formDara.get("nombre"),
@@ -88,10 +90,32 @@ const UsuarioNuevo = () => {
     };
 
     try {
-      toast("Usuario Creado", { type: "success" });
-      //history.push("/usuarios");
-    } catch {
-      toast("Error al crear Usuario", { type: "danger" });
+      const res = await usuariosServices.create(formDara);
+      validationsServices.request(res, "/usuarios");
+      if (res.success) {
+        toast(res.message, { type: "success" });
+        history.push("/usuarios");
+      }
+      else {
+        setButtonState(false);
+        if (res.data) {
+          _.forEach(res.data.errors, function (r) {
+            toast(r[0], { type: "error" });
+          });
+        } else {
+          console.log(res);
+          if (res.message.errors) {
+            toast(res.message.errors, { type: "error" });
+          } else {
+            toast(res.message, { type: "error" });
+          }
+
+        }
+      }
+
+    } catch (error) {
+      setButtonState(false);
+      toast("Error al crear Usuario: " + error, { type: "error" });
     }
   };
 
@@ -129,7 +153,7 @@ const UsuarioNuevo = () => {
               <button
                 onClick={handleSubmit(hSubmit)}
                 className="btn btn-primary"
-              >
+                disabled={buttonState} >
                 <i className="la la-check-square-o"></i> Guardar
               </button>
             </div>
@@ -186,7 +210,7 @@ const UsuarioNuevo = () => {
                 <div className="form-group col-md-6 mb-2">
                   <label>Numero Seguro Social</label>
                   <input
-                    type="text"
+                    type="number"
                     className="form-control"
                     placeholder="Numero de seguro Social"
                     name="num_seguro_social"
@@ -465,7 +489,7 @@ const UsuarioNuevo = () => {
                 <div className="form-group col-md-6 mb-2">
                   <label>CP</label>
                   <input
-                    type="text"
+                    type="number"
                     className="form-control"
                     name="d_cp"
                     placeholder="CP"
@@ -502,37 +526,35 @@ const UsuarioNuevo = () => {
                 <div className="form-group col-md-6 mb-2">
                   <label>Estado</label>
                   <select
-                  id="estado"
-                  className="form-control"
-                  name="d_estado"
-                  ref={register({
+                    className="form-control"
+                    name="d_estado"
+                    ref={register({
                       required: "Este Campo es requerido",
-                  })}
-                  onChange={(event) => getMunicipio(event.target.value)}
+                    })}
+                    onChange={(event) => getMunicipio(event.target.value)}
                   >
-                      <option value="">Seleccionar Opcion</option>
-                      {estados.map((link) => (
-                       <option key={link.id} value={link.id}>{link.nombre}</option>
-                      ))}
+                    <option value="">Seleccionar Opcion</option>
+                    {estados.map((link) => (
+                      <option key={link.id} value={link.id}>{link.nombre}</option>
+                    ))}
                   </select>
-                   {errors.d_estado && (
+                  {errors.d_estado && (
                     <p className="text-validate">{errors.d_estado.message}</p>
                   )}
                 </div>
                 <div className="form-group col-md-6 mb-2">
                   <label>Municipio</label>
                   <select
-                      id="municipio"
-                      className="form-control"
-                      name="d_municipio"
-                      ref={register({
-                          required: "Este Campo es requerido",
-                      })}
+                    className="form-control"
+                    name="d_municipio"
+                    ref={register({
+                      required: "Este Campo es requerido",
+                    })}
                   >
-                      <option value="">Seleccionar Opcion</option>
-                      {municipios.map((link) => (
-                          <option key={link.id} value={link.id}>{link.nombre}</option>
-                      ))}
+                    <option value="">Seleccionar Opcion</option>
+                    {municipios.map((link) => (
+                      <option key={link.id} value={link.id}>{link.nombre}</option>
+                    ))}
                   </select>
                   {errors.d_municipio && (
                     <p className="text-validate">
@@ -554,7 +576,13 @@ const UsuarioNuevo = () => {
                     className="form-control"
                     placeholder="Calle"
                     name="df_calle"
+                    ref={register({
+                      required: "Este Campo es requerido",
+                    })}
                   />
+                  {errors.df_calle && (
+                    <p className="text-validate">{errors.df_calle.message}</p>
+                  )}
                 </div>
               </div>
               <div className="row">
@@ -565,16 +593,28 @@ const UsuarioNuevo = () => {
                     className="form-control"
                     name="df_colonia"
                     placeholder="Colonia"
+                    ref={register({
+                      required: "Este Campo es requerido",
+                    })}
                   />
+                  {errors.df_colonia && (
+                    <p className="text-validate">{errors.df_colonia.message}</p>
+                  )}
                 </div>
                 <div className="form-group col-md-6 mb-2">
                   <label>CP</label>
                   <input
-                    type="text"
+                    type="number"
                     className="form-control"
                     name="df_cp"
                     placeholder="CP"
+                    ref={register({
+                      required: "Este Campo es requerido",
+                    })}
                   />
+                  {errors.df_cp && (
+                    <p className="text-validate">{errors.df_cp.message}</p>
+                  )}
                 </div>
               </div>
               <div className="row">
@@ -598,47 +638,45 @@ const UsuarioNuevo = () => {
                 </div>
               </div>
               <div className="row">
-                  <div className="form-group col-md-6 mb-2">
-                      <label>Estado</label>
-                      <select
-                          id="estado"
-                          className="form-control"
-                          name="df_estado"
-                          ref={register({
-                              required: "Este Campo es requerido",
-                          })}
-                          onChange={(event) => getMunicipioDF(event.target.value)}
-                      >
-                          <option value="">Seleccionar Opcion</option>
-                          {estados.map((link) => (
-                              <option key={link.id} value={link.id}>{link.nombre}</option>
-                          ))}
-                      </select>
-                      {errors.df_estado && (
-                          <p className="text-validate">{errors.df_estado.message}</p>
-                      )}
-                  </div>
-                  <div className="form-group col-md-6 mb-2">
-                      <label>Municipio</label>
-                      <select
-                          id="municipio"
-                          className="form-control"
-                          name="df_municipio"
-                          ref={register({
-                              required: "Este Campo es requerido",
-                          })}
-                      >
-                          <option value="">Seleccionar Opcion</option>
-                          {municipiosDF.map((link) => (
-                              <option key={link.id} value={link.id}>{link.nombre}</option>
-                          ))}
-                      </select>
-                      {errors.df_municipio && (
-                          <p className="text-validate">
-                              {errors.df_municipio.message}
-                          </p>
-                      )}
-                  </div>
+                <div className="form-group col-md-6 mb-2">
+                  <label>Estado</label>
+                  <select
+                    className="form-control"
+                    name="df_estado"
+                    ref={register({
+                      required: "Este Campo es requerido",
+                    })}
+                    onChange={(event) => getMunicipioDF(event.target.value)}
+                  >
+                    <option value="">Seleccionar Opcion</option>
+                    {estados.map((link) => (
+                      <option key={link.id} value={link.id}>{link.nombre}</option>
+                    ))}
+                  </select>
+                  {errors.df_estado && (
+                    <p className="text-validate">{errors.df_estado.message}</p>
+                  )}
+                </div>
+                <div className="form-group col-md-6 mb-2">
+                  <label>Municipio</label>
+                  <select
+                    className="form-control"
+                    name="df_municipio"
+                    ref={register({
+                      required: "Este Campo es requerido",
+                    })}
+                  >
+                    <option value="">Seleccionar Opcion</option>
+                    {municipiosDF.map((link) => (
+                      <option key={link.id} value={link.id}>{link.nombre}</option>
+                    ))}
+                  </select>
+                  {errors.df_municipio && (
+                    <p className="text-validate">
+                      {errors.df_municipio.message}
+                    </p>
+                  )}
+                </div>
               </div>
               <h4 className="form-section">
                 <FontAwesomeIcon icon="address-card" /> Cuenta Bancaria
