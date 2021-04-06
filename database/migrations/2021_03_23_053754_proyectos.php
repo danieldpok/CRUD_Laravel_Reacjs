@@ -22,7 +22,9 @@ class Proyectos extends Migration
             $table->string('email_encargado',120)->nullable();
             $table->string('logotipo_url',120)->nullable();
             $table->string('comentarios',500)->nullable();
-            $table->string('leyenda_responsiba',500)->nullable();
+            $table->string('leyenda_responsiva',500)->nullable();
+            $table->integer('id_direccion')->unsigned();
+            $table->boolean('estatus')->default(0);
             $table->timestamps();
         });
     }

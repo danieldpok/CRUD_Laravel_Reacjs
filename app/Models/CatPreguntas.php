@@ -5,21 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Roles extends Model
+class CatPreguntas extends Model
 {
     use HasFactory;
 
-    protected $table = "cat_roles";
+    protected $table = "cat_preguntas";
 
     protected  $primaryKey = "id";
 
     protected $fillable = [
-        'rol',
-    ];
-
-    protected $hidden = [
-        'estatus',
-        'id'
+        'pregunta,estatus'
     ];
 
     public $timestamps = true;
