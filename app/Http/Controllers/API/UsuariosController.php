@@ -195,9 +195,9 @@ class UsuariosController extends Controller
     public function get($id){
 
         try {
-
             //$data = Employee::with("roleModelFuncion")->find($id);
-            $data = User::with("Persona", "Rol", "DireccionD","DireccionDF", "Cuentabancaria")->find($id);
+            $data = User::with("Persona", "Rol", "DireccionD","DireccionDF", 
+             "Cuentabancaria", "DireccionD.Estado","DireccionD.Municipio", "DireccionDF.Estado","DireccionDF.Municipio")->find($id);
 
             if ($data) {
                 $response['data'] = $data;

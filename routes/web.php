@@ -33,9 +33,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::get('/', 'App\Http\Controllers\PrincipalHomeController@index');
 Route::get('/usuarios', 'App\Http\Controllers\PrincipalHomeController@index');
 Route::get('/usuarios/nuevo', 'App\Http\Controllers\PrincipalHomeController@index');
+Route::get('/usuarios/{id}/editar', 'App\Http\Controllers\PrincipalHomeController@index');
+Route::get('/usuarios/{id}/ver', 'App\Http\Controllers\PrincipalHomeController@index');
 
-Route::get('/employee', 'App\Http\Controllers\EmployeeController@index');
-Route::get('/employee/index', 'App\Http\Controllers\EmployeeController@index');
-Route::get('/employee/list', 'App\Http\Controllers\EmployeeController@index');
-Route::get('/employee/form', 'App\Http\Controllers\EmployeeController@index');
-Route::get('/employee/edit/{num}', 'App\Http\Controllers\EmployeeController@index');

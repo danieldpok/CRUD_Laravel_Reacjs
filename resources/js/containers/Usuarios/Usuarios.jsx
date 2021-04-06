@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Rutas from "../../components/Rutas";
-import { MDBBtn } from "mdbreact";
+import { MDBBtn, MDBLink } from "mdbreact";
 import Tabla from "../../components/Tabla";
 import { toast } from "react-toastify";
 import usuariosServices from "../../components/services/Usuarios"
@@ -11,7 +11,7 @@ const Usuarios = () => {
     {
       label: "Nombre",
       field: "nombre",
-      width: 150,
+      width: 100,
       attributes: {
         "aria-controls": "DataTable",
         "aria-label": "Nombre",
@@ -20,7 +20,7 @@ const Usuarios = () => {
     {
       label: "Usuario",
       field: "usuario",
-      width: 270,
+      width: 200,
     },
     {
       label: "Email",
@@ -44,8 +44,18 @@ const Usuarios = () => {
     },
     {
       label: "",
+      field: "ver",
+      width: 25,
+    },
+    {
+      label: "",
+      field: "editar",
+      width: 25,
+    },
+    {
+      label: "",
       field: "borrar",
-      width: 50,
+      width: 25,
     },
   ];
 
@@ -73,6 +83,22 @@ const Usuarios = () => {
         rol: doc.rol.rol,
         telefono: doc.persona.telefono1,
         lugar: doc.direccion_d.estado.nombre,
+        ver: (
+          <MDBLink
+            to={`/usuarios/${doc.id}/ver`}
+            className="btn btn-outline-primary btn-sm p-2"
+          >
+            <i className="fas fa-eye"></i>
+          </MDBLink>
+        ),
+        editar: (
+          <MDBLink
+            to={`/usuarios/${doc.id}/editar`}
+            className="btn btn-outline-primary btn-sm p-2"
+          >
+            <i className="fas fa-edit"></i>
+          </MDBLink>
+        ),
         borrar: (
           <MDBBtn
             onClick={() => {

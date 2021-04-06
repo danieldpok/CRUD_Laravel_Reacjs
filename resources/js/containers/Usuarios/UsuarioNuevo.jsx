@@ -91,7 +91,6 @@ const UsuarioNuevo = () => {
 
     try {
       const res = await usuariosServices.create(formDara);
-      validationsServices.request(res, "/usuarios");
       if (res.success) {
         toast(res.message, { type: "success" });
         history.push("/usuarios");
@@ -103,7 +102,6 @@ const UsuarioNuevo = () => {
             toast(r[0], { type: "error" });
           });
         } else {
-          console.log(res);
           if (res.message.errors) {
             toast(res.message.errors, { type: "error" });
           } else {

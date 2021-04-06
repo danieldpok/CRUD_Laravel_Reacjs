@@ -37,7 +37,7 @@ usuarios.create = async (data) => {
 
 usuarios.get = async (id) => {
     const UrlGet = baseUrl + "/get/" + id
-    const res = await axios.get(UrlGet, id)
+    const res = await axios.get(UrlGet)
         .then(response => { return response.data })
         .catch(error => { return error; })
     return res;
