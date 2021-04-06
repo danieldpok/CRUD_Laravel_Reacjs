@@ -48,6 +48,6 @@ Route::put('/usuarios/delete/{id}', 'App\Http\Controllers\API\UsuariosController
 //PROYECTOS
 Route::get('/proyectos/list', 'App\Http\Controllers\API\ProyectosController@listProyectos');
 Route::get('/proyectos/{id}', 'App\Http\Controllers\API\ProyectosController@getProyecto');
-Route::post('/proyectos/create', 'App\Http\Controllers\API\ProyectosController@createProyecto');
-Route::put('/proyectos/{id}', 'App\Http\Controllers\API\ProyectosController@editProyecto');
+Route::post('/proyectos/create', 'App\Http\Controllers\API\ProyectosController@createProyectoName');
+Route::put('/proyectos/{id}', 'App\Http\Controllers\API\ProyectosController@editProyectoNombre');
 Route::delete('/proyectos/{id}', 'App\Http\Controllers\API\ProyectosController@deleteProyecto');

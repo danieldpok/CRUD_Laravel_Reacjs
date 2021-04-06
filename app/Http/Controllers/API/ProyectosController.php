@@ -18,6 +18,32 @@ class ProyectosController extends Controller
         return $response;
     }
 
+    public function createProyectoName(Request $request){
+
+        $result = DB::transaction(function () use ($request) {
+
+            try {
+
+                $proyecto = new Proyectos();
+                $proyecto->nombre_proyecto = $request['nombre_proyecto'];
+                $proyecto->save();
+
+                $response['message'] = "Proyecto Creado";
+                $response['success'] = true;
+
+            } catch (\Exception $e) {
+                DB::rollback();
+                $response['message'] = $e->getMessage();
+                $response['success'] = false;
+            }
+
+            return $response;
+        });
+
+        return $result;
+
+    }
+
     public function createProyecto(Request $request){
 
         $result = DB::transaction(function () use ($request) {
@@ -88,6 +114,34 @@ class ProyectosController extends Controller
                 $direccion->numint = $request["numero_int"];
                 $direccion->numext = $request["numero_ext"];
                 $direccion->save();
+
+                $response['message'] = "Proyecto Editado";
+                $response['success'] = true;
+
+
+            } catch (\Exception $e) {
+                DB::rollback();
+                $response['message'] = $e->getMessage();
+                $response['success'] = false;
+            }
+
+            return $response;
+        });
+
+        return $result;
+
+    }
+
+    public function editProyectoNombre(Request $request,$id){
+
+        $result = DB::transaction(function () use ($request,$id) {
+
+            try {
+
+                $proyecto = Proyectos::find($id);
+                $proyecto->nombre_proyecto = $request['nombre_proyecto'];
+                $proyecto->estatus = $request["estatus"];
+                $proyecto->save();
 
                 $response['message'] = "Proyecto Editado";
                 $response['success'] = true;

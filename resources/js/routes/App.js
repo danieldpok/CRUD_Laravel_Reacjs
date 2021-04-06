@@ -9,7 +9,7 @@ import Usuarios from "../containers/Usuarios/Usuarios";
 import UsuarioNuevo from "../containers/Usuarios/UsuarioNuevo";
 import UsuarioEditar from "../containers/Usuarios/UsuarioEditar";
 import UsuarioVer from "../containers/Usuarios/UsuarioVer";
-
+import Proyectos from "../containers/Proyectos/Proyectos";
 
 const App = () => {
     return (
@@ -21,6 +21,7 @@ const App = () => {
                     <Route exact path="/usuarios/nuevo" component={UsuarioNuevo} />
                     <Route exact path="/usuarios/:id/editar" component={UsuarioEditar} />
                     <Route exact path="/usuarios/:id/ver" component={UsuarioVer} />
+                    <Route exact path="/proyectos" component={Proyectos} />
                     <Route component={NotFound} />
                 </Switch>
             </Layout>

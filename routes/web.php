@@ -36,3 +36,5 @@ Route::get('/usuarios/nuevo', 'App\Http\Controllers\PrincipalHomeController@inde
 Route::get('/usuarios/{id}/editar', 'App\Http\Controllers\PrincipalHomeController@index');
 Route::get('/usuarios/{id}/ver', 'App\Http\Controllers\PrincipalHomeController@index');
 
+Route::get('/proyectos', 'App\Http\Controllers\PrincipalHomeController@index');
+

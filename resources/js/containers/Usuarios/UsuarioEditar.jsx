@@ -100,8 +100,7 @@ const UsuarioEditar = () => {
     };
 
     try {
-      const res = await usuariosServices.create(formDara);
-      validationsServices.request(res, "/usuarios");
+      const res = await usuariosServices.update(formDara);
       if (res.success) {
         toast(res.message, { type: "success" });
         history.push("/usuarios");
@@ -125,7 +124,7 @@ const UsuarioEditar = () => {
 
     } catch (error) {
       setButtonState(false);
-      toast("Error al crear Usuario: " + error, { type: "error" });
+      toast("Error al editar el Usuario: " + error, { type: "error" });
     }
   };
 
