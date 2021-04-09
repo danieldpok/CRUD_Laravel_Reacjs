@@ -1,86 +1,95 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useForm } from "react-hook-form";
 import { Link, useHistory } from "react-router-dom";
-import AppContext from "../../context/AppContext";
 import { toast } from "react-toastify";
-import { db } from "../../firebase";
+import { useParams } from "react-router";
+import proyectosServices from "../../components/services/Proyectos";
+import catalogosServices from "../../components/services/Catalogos"
 
 const ProyectoAsigInfo = () => {
-  const initialValidation = {
-    loading: false,
-    error: null,
-    error_info: "",
-  };
+  const { id } = useParams();
+  const idProyecto = id;
 
   const { register, handleSubmit, errors, watch } = useForm();
-  const { state } = useContext(AppContext);
+  const [proyecto, setProyecto] = useState([]);
+  const [estados, setEstados] = useState([]);
+  const [municipios, setMunicipios] = useState([]);
+  const [buttonState, setButtonState] = useState(false);
   const form = useRef(null);
   const history = useHistory();
-  const [validation, setValidation] = useState(initialValidation);
 
-  const hSubmit = () => {
+  const hSubmit = async () => {
+    setButtonState(true);
     const formDara = new FormData(form.current);
-    const usuario = {
-      nombre: formDara.get("nombre"),
-      paterno: formDara.get("paterno"),
-      materno: formDara.get("materno"),
-      razon_social: formDara.get("razon_social"),
+    const infoProyecto = {
+      nombre_sucursal: formDara.get("nombre_sucursal"),
+      nombre_encargado: formDara.get("nombre_encargado"),
+      telefono: formDara.get("telefono"),
       email: formDara.get("email"),
-      num_seguro_social: formDara.get("num_seguro_social"),
-      rfc: formDara.get("rfc"),
-      curp: formDara.get("curp"),
-      ine: formDara.get("ine"),
-      usuario: formDara.get("usuario"),
-      password: formDara.get("password"),
-      tipo_persona_sat: formDara.get("tipo_persona_sat"),
-      datos_bancarios_nombre: formDara.get("datos_bancarios_nombre"),
-      datos_bancarios_banco: formDara.get("datos_bancarios_banco"),
-      datos_bancarios_clabe: formDara.get("datos_bancarios_clabe"),
-      datos_bancarios_numero_cuenta: formDara.get(
-        "datos_bancarios_numero_cuenta"
-      ),
-      d_calle: formDara.get("d_calle"),
-      d_colonia: formDara.get("d_colonia"),
-      d_cp: formDara.get("d_cp"),
-      d_estado: formDara.get("d_estado"),
-      d_municipio: formDara.get("d_municipio"),
-      d_numero_int: formDara.get("d_numero_int"),
-      d_numero_ext: formDara.get("d_numero_ext"),
-      d_tipo_direccion: formDara.get("d_tipo_direccion"),
-      df_calle: formDara.get("df_calle"),
-      df_colonia: formDara.get("df_colonia"),
-      df_cp: formDara.get("df_cp"),
-      df_estado: formDara.get("df_estado"),
-      df_municipio: formDara.get("df_municipio"),
-      df_numero_int: formDara.get("df_numero_int"),
-      df_numero_ext: formDara.get("df_numero_ext"),
-      df_tipo_direccion: formDara.get("df_tipo_direccion"),
-      telefono1: formDara.get("telefono1"),
-      telefono2: formDara.get("telefono2"),
+      logotipo: formDara.get("logotipo"),
+      calle: formDara.get("d_calle"),
+      colonia: formDara.get("d_colonia"),
+      cp: formDara.get("d_cp"),
+      numero_int: formDara.get("d_numero_int"),
+      numero_ext: formDara.get("d_numero_ext"),
+      estado: formDara.get("d_estado"),
+      municipio: formDara.get("d_municipio"),
+      comentarios: formDara.get("comentarios"),
+      responsiva: formDara.get("responsiva"),
     };
-    addTask(usuario);
+
+    try {
+      const res = await proyectosServices.createProyectoInfo(formDara);
+      if (res.success) {
+        toast(res.message, { type: "success" });
+        history.push("/proyectos");
+      }
+      else {
+        setButtonState(false);
+        if (res.data) {
+          _.forEach(res.data.errors, function (r) {
+            toast(r[0], { type: "error" });
+          });
+        } else {
+          if (res.message.errors) {
+            toast(res.message.errors, { type: "error" });
+          } else {
+            toast(res.message, { type: "error" });
+          }
+
+        }
+      }
+
+    } catch (error) {
+      console.log(error);
+      setButtonState(false);
+      toast("Error al guardar Proyecto: " + error, { type: "error" });
+    }
+
   };
 
-  const addTask = async (linkObject) => {
-    await db
-      .collection("proyectos_informacion")
-      .doc()
-      .set(linkObject)
-      .then((response) => {
-        setValidation({ loading: false });
-        toast("Se agrego la informacion al proyecto", { type: "success" });
-        history.push("/proyectos");
-      })
-      .catch((err) => {
-        toast("Error", { type: "error" });
-        setValidation({
-          loading: false,
-          error: err,
-          error_info: err,
-        });
-      });
-  };
+  const getProyecto = async (id) => {
+    const res = await proyectosServices.get(id);
+    setProyecto(res.data);
+    console.log(res.data);
+  }
+
+  const getEstados = async () => {
+    const res = await catalogosServices.listCatEstados();
+    setEstados(res.data);
+  }
+
+  const getMunicipio = async (id) => {
+    const res = await catalogosServices.list_catMunicipios(id);
+    setMunicipios(res.data);
+  }
+
+
+  useEffect(() => {
+    getProyecto(idProyecto);
+    getEstados();
+  }, []);
 
   return (
     <div className="ProyectoAsignacionInfo">
@@ -89,7 +98,7 @@ const ProyectoAsigInfo = () => {
           <div className="card">
             <div className="card-header">
               <h4 className="card-title" id="from-actions-top-left">
-                Asignar informacion a Proyecto NPM
+                Asignar informacion a Proyecto: {proyecto.nombre_proyecto}
               </h4>
             </div>
           </div>
@@ -110,6 +119,7 @@ const ProyectoAsigInfo = () => {
               <button
                 onClick={handleSubmit(hSubmit)}
                 className="btn btn-primary"
+                disabled={buttonState}
               >
                 <i className="la la-check-square-o"></i> Guardar
               </button>
@@ -125,6 +135,7 @@ const ProyectoAsigInfo = () => {
                     type="text"
                     className="form-control"
                     placeholder="Nombre Sucursal"
+                    defaultValue={proyecto.nombre_sucursal}
                     name="nombre_sucursal"
                     ref={register({
                       required: "Este Campo es requerido",
@@ -145,6 +156,7 @@ const ProyectoAsigInfo = () => {
                     className="form-control"
                     placeholder="Nombre Encargado"
                     name="nombre_encargado"
+                    defaultValue={proyecto.nombre_encargado}
                     ref={register({
                       required: "Este Campo es requerido",
                     })}
@@ -162,6 +174,7 @@ const ProyectoAsigInfo = () => {
                     className="form-control"
                     placeholder="Telefono"
                     name="telefono"
+                    defaultValue={proyecto.telefono}
                     ref={register({
                       required: "Este Campo es requerido",
                     })}
@@ -179,6 +192,7 @@ const ProyectoAsigInfo = () => {
                     className="form-control"
                     placeholder="E-mail"
                     name="email"
+                    defaultValue={proyecto.email_encargado}
                     ref={register({
                       required: "Este Campo es requerido",
                     })}
@@ -193,13 +207,7 @@ const ProyectoAsigInfo = () => {
                     type="file"
                     className="form-control-file"
                     name="logotipo"
-                    ref={register({
-                      required: "Este Campo es requerido",
-                    })}
                   />
-                  {errors.logotipo && (
-                    <p className="text-validate">{errors.logotipo.message}</p>
-                  )}
                 </div>
               </div>
               <h4 className="form-section">
@@ -291,30 +299,37 @@ const ProyectoAsigInfo = () => {
               <div className="row">
                 <div className="form-group col-md-6 mb-2">
                   <label>Estado</label>
-                  <input
-                    type="text"
-                    id="estado"
+                  <select
                     className="form-control"
                     name="d_estado"
                     ref={register({
                       required: "Este Campo es requerido",
                     })}
-                  />
+                    onChange={(event) => getMunicipio(event.target.value)}
+                  >
+                    <option value="">Seleccionar Opcion</option>
+                    {estados.map((link) => (
+                      <option key={link.id} value={link.id}>{link.nombre}</option>
+                    ))}
+                  </select>
                   {errors.d_estado && (
                     <p className="text-validate">{errors.d_estado.message}</p>
                   )}
                 </div>
                 <div className="form-group col-md-6 mb-2">
                   <label>Municipio</label>
-                  <input
-                    type="text"
-                    id="municipio"
+                  <select
                     className="form-control"
                     name="d_municipio"
                     ref={register({
                       required: "Este Campo es requerido",
                     })}
-                  />
+                  >
+                    <option value="">Seleccionar Opcion</option>
+                    {municipios.map((link) => (
+                      <option key={link.id} value={link.id}>{link.nombre}</option>
+                    ))}
+                  </select>
                   {errors.d_municipio && (
                     <p className="text-validate">
                       {errors.d_municipio.message}

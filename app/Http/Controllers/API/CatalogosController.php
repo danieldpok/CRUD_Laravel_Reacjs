@@ -5,21 +5,46 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\CatPreguntas;
 use App\Models\CatServicios;
-use App\Models\Roles;
+use App\Models\CatRoles;
+use App\Models\CatDirEstado;
+use App\Models\CatDirMunicipio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class CatalogosController extends Controller
 {
 
+    //ESTADO Y MUNICIPIOS
+    public function list_catEstados(){
+        $data = CatDirEstado::get();
+        $response['data'] = $data;
+        $response['success'] = true;
+        return $response;
+    }
+
+    public function list_catMunicipios($id){
+       $data = CatDirMunicipio::municipios($id);
+       $response['data'] = $data;
+       $response['success'] = true;
+       return $response;
+
+    }
+
     //Catalogo Roles
+
+    public function list_roles(){
+        $data = CatRoles::where("estatus",'!=', 2)->get();
+        $response['data'] = $data;
+        $response['success'] = true;
+        return $response;
+    }
 
     public function createRol(Request $request){
 
         $result = DB::transaction(function () use ($request) {
 
             try {
-                $rol = new Roles();
+                $rol = new CatRoles();
                 $rol->rol =$request["rol"];
                 $rol->save();
 
@@ -43,7 +68,7 @@ class CatalogosController extends Controller
         $result = DB::transaction(function () use ($request,$id) {
 
             try {
-                $rol = Roles::find($id);
+                $rol = CatRoles::find($id);
                 $rol->rol =$request["rol"];
                 $rol->save();
 
@@ -67,7 +92,7 @@ class CatalogosController extends Controller
 
         try {
 
-            $data = Roles::all()->find($id);
+            $data = CatRoles::all()->find($id);
 
             if ($data) {
                 $response['data'] = $data;
@@ -92,7 +117,7 @@ class CatalogosController extends Controller
         $result = DB::transaction(function () use ($request,$id) {
 
             try {
-                $rol = Roles::find($id);
+                $rol = CatRoles::find($id);
                 $rol->estatus = 2;
                 $rol->save();
 

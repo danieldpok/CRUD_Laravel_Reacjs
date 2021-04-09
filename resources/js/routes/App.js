@@ -10,6 +10,7 @@ import UsuarioNuevo from "../containers/Usuarios/UsuarioNuevo";
 import UsuarioEditar from "../containers/Usuarios/UsuarioEditar";
 import UsuarioVer from "../containers/Usuarios/UsuarioVer";
 import Proyectos from "../containers/Proyectos/Proyectos";
+import ProyectoAsigInfo from "../containers/Proyectos/ProyectoAsigInfo";
 
 const App = () => {
     return (
@@ -22,6 +23,7 @@ const App = () => {
                     <Route exact path="/usuarios/:id/editar" component={UsuarioEditar} />
                     <Route exact path="/usuarios/:id/ver" component={UsuarioVer} />
                     <Route exact path="/proyectos" component={Proyectos} />
+                    <Route exact path="/proyectos/asignarInformacion/:id" component={ProyectoAsigInfo} />
                     <Route component={NotFound} />
                 </Switch>
             </Layout>

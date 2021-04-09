@@ -80,7 +80,7 @@ const Usuarios = () => {
         nombre: doc.persona.nombre,
         usuario: doc.name,
         email: doc.email,
-        rol: doc.rol.rol,
+        rol: doc.cat_roles.rol,
         telefono: doc.persona.telefono1,
         lugar: doc.direccion_d.estado.nombre,
         ver: (

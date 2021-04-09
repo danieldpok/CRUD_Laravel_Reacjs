@@ -11,10 +11,10 @@ class CatRoles extends Model
 
     protected $table = "cat_roles";
 
-    protected  $primaryKey = "id_rol";
+    protected  $primaryKey = "id";
 
     protected $fillable = [
-      'rol,estatus'
+        'rol','id'
     ];
 
     public $timestamps = true;

@@ -37,6 +37,7 @@ CREATE TABLE `cat_dir_municipios` (
 --
 
 INSERT INTO `cat_dir_municipios` (`id`, `id_estado`, `nombre`) VALUES
+(0, 0, 'Sin Municipio'),
 (1, 1, 'Aguascalientes'),
 (2, 1, 'Asientos'),
 (3, 1, 'Calvillo'),

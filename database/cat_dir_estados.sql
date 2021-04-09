@@ -36,6 +36,7 @@ CREATE TABLE `cat_dir_estados` (
 --
 
 INSERT INTO `cat_dir_estados` (`id`, `nombre`) VALUES
+(0, 'Sin Estado'),
 (1, 'Aguascalientes'),
 (2, 'Baja California'),
 (3, 'Baja California Sur'),

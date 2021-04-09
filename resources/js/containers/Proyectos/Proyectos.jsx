@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Rutas from "../../components/Rutas";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
-import ProyectosForm from "../../components/ProyectosForm";
+import ProyectosForm from "./ProyectosForm";
 import proyectosServices from "../../components/services/Proyectos"
 
 const Proyectos = () => {
@@ -77,13 +77,13 @@ const Proyectos = () => {
                       className="text-danger"
                       onClick={() => setCurrentId(link.id)}
                     >
-                      Editar
+                      Editar Nombre
                     </span>
                   </div>
                 </div>
 
                 <Link
-                  to="/proyectos/asignarInformacion/"
+                  to={`/proyectos/asignarInformacion/${link.id}`}
                   type="button"
                   className="btn btn-primary p-2"
                 >

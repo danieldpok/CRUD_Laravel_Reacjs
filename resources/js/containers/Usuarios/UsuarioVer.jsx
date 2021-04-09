@@ -59,7 +59,7 @@ const UsuarioVer = () => {
     setDirecciond(res.data.direccion_d);
     setDirecciondf(res.data.direccion_d_f);
     setCuentabancaria(res.data.cuentabancaria);
-    setRol(res.data.rol);
+    setRol(res.data.cat_roles);
     setDirecciondne(res.data.direccion_d.estado);
     setDirecciondfne(res.data.direccion_d_f.estado);
     setDirecciondnm(res.data.direccion_d.municipio);

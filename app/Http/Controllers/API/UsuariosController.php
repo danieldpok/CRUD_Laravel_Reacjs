@@ -17,30 +17,8 @@ use Illuminate\Support\Facades\Hash;
 
 class UsuariosController extends Controller
 {
-    public function list_roles(){
-        $data = CatRoles::where("estatus",'!=', 2)->get();
-        $response['data'] = $data;
-        $response['success'] = true;
-        return $response;
-    }
-
-    public function list_catEstados(){
-        $data = CatDirEstado::get();
-        $response['data'] = $data;
-        $response['success'] = true;
-        return $response;
-    }
-
-    public function list_catMunicipios($id){
-       $data = CatDirMunicipio::municipios($id);
-       $response['data'] = $data;
-       $response['success'] = true;
-       return $response;
-
-    }
-
     public function list (){
-        $data = User::with("Persona", "Rol", "DireccionD","DireccionDF","DireccionD.Estado")
+        $data = User::with("Persona", "CatRoles", "DireccionD","DireccionDF","DireccionD.Estado")
         ->where('estatus', '!=',2)->get();
         $response['data'] = $data;
         $response['success'] = true;
@@ -196,7 +174,7 @@ class UsuariosController extends Controller
 
         try {
             //$data = Employee::with("roleModelFuncion")->find($id);
-            $data = User::with("Persona", "Rol", "DireccionD","DireccionDF",
+            $data = User::with("Persona", "CatRoles", "DireccionD","DireccionDF",
              "Cuentabancaria", "DireccionD.Estado","DireccionD.Municipio", "DireccionDF.Estado","DireccionDF.Municipio")->find($id);
 
             if ($data) {

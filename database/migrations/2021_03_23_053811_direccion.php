@@ -15,8 +15,8 @@ class Direccion extends Migration
     {
         Schema::create('direccion', function (Blueprint $table) {
             $table->increments('id_direccion');
-            $table->string('calle',45);
-            $table->string('colonia',45);
+            $table->string('calle',45)->nullable();
+            $table->string('colonia',45)->nullable();
             $table->string('numint',15)->nullable();
             $table->string('numext',15)->nullable();
             $table->integer('estado')->unsigned();

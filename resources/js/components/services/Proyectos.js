@@ -10,6 +10,14 @@ proyectos.createProyectoName = async (data) => {
     return res;
 }
 
+proyectos.createProyectoInfo = async (data) => {
+    const UrlCreate = baseUrl + "/createInfo/" + data.id_proyecto
+    const res = await axios.put(UrlCreate, data)
+        .then(response => { return response.data })
+        .catch(error => { return error.response; })
+    return res;
+}
+
 proyectos.get = async (id) => {
     const UrlGet = baseUrl + "/" + id
     const res = await axios.get(UrlGet)

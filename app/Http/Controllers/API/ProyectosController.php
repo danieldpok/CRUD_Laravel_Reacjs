@@ -24,8 +24,14 @@ class ProyectosController extends Controller
 
             try {
 
+                $direccion = new Direccion();
+                $direccion->estado = 0;
+                $direccion->municipio = 0;
+                $direccion->save();
+
                 $proyecto = new Proyectos();
                 $proyecto->nombre_proyecto = $request['nombre_proyecto'];
+                $proyecto->Direccion()->associate($direccion);
                 $proyecto->save();
 
                 $response['message'] = "Proyecto Creado";
@@ -44,7 +50,8 @@ class ProyectosController extends Controller
 
     }
 
-    public function createProyecto(Request $request){
+    /*
+    public function createProyectoInfo(Request $request){
 
         $result = DB::transaction(function () use ($request) {
 
@@ -87,8 +94,8 @@ class ProyectosController extends Controller
         return $result;
 
     }
-
-    public function editProyecto(Request $request,$id){
+     */
+    public function createProyectoInfo(Request $request,$id){
 
         $result = DB::transaction(function () use ($request,$id) {
 
