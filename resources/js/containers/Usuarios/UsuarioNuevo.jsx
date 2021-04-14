@@ -49,45 +49,47 @@ const UsuarioNuevo = () => {
   const hSubmit = async () => {
     setButtonState(true);
     const formDara = new FormData(form.current);
-    const usuario = {
-      nombre: formDara.get("nombre"),
-      paterno: formDara.get("paterno"),
-      materno: formDara.get("materno"),
-      razon_social: formDara.get("razon_social"),
-      email: formDara.get("email"),
-      num_seguro_social: formDara.get("num_seguro_social"),
-      rfc: formDara.get("rfc"),
-      curp: formDara.get("curp"),
-      ine: formDara.get("ine"),
-      usuario: formDara.get("usuario"),
-      password: formDara.get("password"),
-      cat_rol: formDara.get("cat_roles"),
-      tipo_persona_sat: formDara.get("tipo_persona_sat"),
-      datos_bancarios_nombre: formDara.get("datos_bancarios_nombre"),
-      datos_bancarios_banco: formDara.get("datos_bancarios_banco"),
-      datos_bancarios_clabe: formDara.get("datos_bancarios_clabe"),
-      datos_bancarios_numero_cuenta: formDara.get(
-        "datos_bancarios_numero_cuenta"
-      ),
-      d_calle: formDara.get("d_calle"),
-      d_colonia: formDara.get("d_colonia"),
-      d_cp: formDara.get("d_cp"),
-      d_estado: formDara.get("d_estado"),
-      d_municipio: formDara.get("d_municipio"),
-      d_numero_int: formDara.get("d_numero_int"),
-      d_numero_ext: formDara.get("d_numero_ext"),
-      d_tipo_direccion: formDara.get("d_tipo_direccion"),
-      df_calle: formDara.get("df_calle"),
-      df_colonia: formDara.get("df_colonia"),
-      df_cp: formDara.get("df_cp"),
-      df_estado: formDara.get("df_estado"),
-      df_municipio: formDara.get("df_municipio"),
-      df_numero_int: formDara.get("df_numero_int"),
-      df_numero_ext: formDara.get("df_numero_ext"),
-      df_tipo_direccion: formDara.get("df_tipo_direccion"),
-      telefono1: formDara.get("telefono1"),
-      telefono2: formDara.get("telefono2"),
-    };
+    /*
+        const usuario = {
+          nombre: formDara.get("nombre"),
+          paterno: formDara.get("paterno"),
+          materno: formDara.get("materno"),
+          razon_social: formDara.get("razon_social"),
+          email: formDara.get("email"),
+          num_seguro_social: formDara.get("num_seguro_social"),
+          rfc: formDara.get("rfc"),
+          curp: formDara.get("curp"),
+          ine: formDara.get("ine"),
+          usuario: formDara.get("usuario"),
+          password: formDara.get("password"),
+          cat_rol: formDara.get("cat_roles"),
+          tipo_persona_sat: formDara.get("tipo_persona_sat"),
+          datos_bancarios_nombre: formDara.get("datos_bancarios_nombre"),
+          datos_bancarios_banco: formDara.get("datos_bancarios_banco"),
+          datos_bancarios_clabe: formDara.get("datos_bancarios_clabe"),
+          datos_bancarios_numero_cuenta: formDara.get(
+            "datos_bancarios_numero_cuenta"
+          ),
+          d_calle: formDara.get("d_calle"),
+          d_colonia: formDara.get("d_colonia"),
+          d_cp: formDara.get("d_cp"),
+          d_estado: formDara.get("d_estado"),
+          d_municipio: formDara.get("d_municipio"),
+          d_numero_int: formDara.get("d_numero_int"),
+          d_numero_ext: formDara.get("d_numero_ext"),
+          d_tipo_direccion: formDara.get("d_tipo_direccion"),
+          df_calle: formDara.get("df_calle"),
+          df_colonia: formDara.get("df_colonia"),
+          df_cp: formDara.get("df_cp"),
+          df_estado: formDara.get("df_estado"),
+          df_municipio: formDara.get("df_municipio"),
+          df_numero_int: formDara.get("df_numero_int"),
+          df_numero_ext: formDara.get("df_numero_ext"),
+          df_tipo_direccion: formDara.get("df_tipo_direccion"),
+          telefono1: formDara.get("telefono1"),
+          telefono2: formDara.get("telefono2"),
+        };
+    */
 
     try {
       const res = await usuariosServices.create(formDara);

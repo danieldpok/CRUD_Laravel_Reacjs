@@ -13,16 +13,34 @@ const ProyectoAsigInfo = () => {
 
   const { register, handleSubmit, errors, watch } = useForm();
   const [proyecto, setProyecto] = useState([]);
+  const [direccion, setDireccion] = useState([]);
+  const [direccionE, setDireccionE] = useState([]);
+  const [direccionM, setDireccionM] = useState([]);
   const [estados, setEstados] = useState([]);
   const [municipios, setMunicipios] = useState([]);
   const [buttonState, setButtonState] = useState(false);
-  const form = useRef(null);
+  const formInfoProyecto = useRef(null);
   const history = useHistory();
+
+  /*
+  const cambioBase64 = async (file) => {
+    const reader = new FileReader();
+    reader.onload = function () {
+      let binaryString = reader.result;
+      const result1 = btoa(binaryString);
+      console.log(result1);
+      setImageup(result1);
+    }
+    reader.readAsBinaryString(file);
+  }
+  */
 
   const hSubmit = async () => {
     setButtonState(true);
-    const formDara = new FormData(form.current);
+    const formDara = new FormData(formInfoProyecto.current);
+
     const infoProyecto = {
+      idProyecto: idProyecto,
       nombre_sucursal: formDara.get("nombre_sucursal"),
       nombre_encargado: formDara.get("nombre_encargado"),
       telefono: formDara.get("telefono"),
@@ -31,16 +49,17 @@ const ProyectoAsigInfo = () => {
       calle: formDara.get("d_calle"),
       colonia: formDara.get("d_colonia"),
       cp: formDara.get("d_cp"),
-      numero_int: formDara.get("d_numero_int"),
-      numero_ext: formDara.get("d_numero_ext"),
+      numint: formDara.get("d_numero_int"),
+      numext: formDara.get("d_numero_ext"),
       estado: formDara.get("d_estado"),
       municipio: formDara.get("d_municipio"),
       comentarios: formDara.get("comentarios"),
       responsiva: formDara.get("responsiva"),
     };
 
+
     try {
-      const res = await proyectosServices.createProyectoInfo(formDara);
+      const res = await proyectosServices.createProyectoInfo(infoProyecto);
       if (res.success) {
         toast(res.message, { type: "success" });
         history.push("/proyectos");
@@ -62,7 +81,6 @@ const ProyectoAsigInfo = () => {
       }
 
     } catch (error) {
-      console.log(error);
       setButtonState(false);
       toast("Error al guardar Proyecto: " + error, { type: "error" });
     }
@@ -72,7 +90,9 @@ const ProyectoAsigInfo = () => {
   const getProyecto = async (id) => {
     const res = await proyectosServices.get(id);
     setProyecto(res.data);
-    console.log(res.data);
+    setDireccion(res.data.direccion);
+    setDireccionE(res.data.direccion.estado);
+    setDireccionM(res.data.direccion.municipio);
   }
 
   const getEstados = async () => {
@@ -107,7 +127,7 @@ const ProyectoAsigInfo = () => {
       <div className="card-content collpase show">
         <div className="card-body">
           <div className="card-text"></div>
-          <form className="form" ref={form}>
+          <form className="form" ref={formInfoProyecto}>
             <div className="form-actions text-right">
               <Link
                 to="/proyectos"
@@ -205,8 +225,10 @@ const ProyectoAsigInfo = () => {
                   <label>Logotipo</label>
                   <input
                     type="file"
+                    id="logotipo"
                     className="form-control-file"
                     name="logotipo"
+                    accept=".jpeg, .png, .jpg"
                   />
                 </div>
               </div>
@@ -221,6 +243,7 @@ const ProyectoAsigInfo = () => {
                     className="form-control"
                     placeholder="Calle"
                     name="d_calle"
+                    defaultValue={direccion.calle}
                     ref={register({
                       required: "Este Campo es requerido",
                     })}
@@ -238,6 +261,7 @@ const ProyectoAsigInfo = () => {
                     className="form-control"
                     name="d_colonia"
                     placeholder="Colonia"
+                    defaultValue={direccion.colonia}
                     ref={register({
                       required: "Este Campo es requerido",
                     })}
@@ -253,6 +277,7 @@ const ProyectoAsigInfo = () => {
                     className="form-control"
                     name="d_cp"
                     placeholder="CP"
+                    defaultValue={direccion.cp}
                     ref={register({
                       required: "Este Campo es requerido",
                     })}
@@ -269,6 +294,7 @@ const ProyectoAsigInfo = () => {
                     type="text"
                     className="form-control"
                     name="d_numero_int"
+                    defaultValue={direccion.numint}
                     ref={register({
                       required: "Este Campo es requerido",
                     })}
@@ -285,6 +311,7 @@ const ProyectoAsigInfo = () => {
                     type="text"
                     className="form-control"
                     name="d_numero_ext"
+                    defaultValue={direccion.numext}
                     ref={register({
                       required: "Este Campo es requerido",
                     })}
@@ -307,7 +334,7 @@ const ProyectoAsigInfo = () => {
                     })}
                     onChange={(event) => getMunicipio(event.target.value)}
                   >
-                    <option value="">Seleccionar Opcion</option>
+                    <option value={direccionE.id}>{direccionE.nombre}</option>
                     {estados.map((link) => (
                       <option key={link.id} value={link.id}>{link.nombre}</option>
                     ))}
@@ -325,7 +352,7 @@ const ProyectoAsigInfo = () => {
                       required: "Este Campo es requerido",
                     })}
                   >
-                    <option value="">Seleccionar Opcion</option>
+                    <option value={direccionM.id}>{direccionM.nombre}</option>
                     {municipios.map((link) => (
                       <option key={link.id} value={link.id}>{link.nombre}</option>
                     ))}
@@ -346,6 +373,7 @@ const ProyectoAsigInfo = () => {
                     type="text"
                     className="form-control"
                     placeholder="Comentarios"
+                    defaultValue={proyecto.comentarios}
                     name="comentarios"
                   />
                 </div>
@@ -359,6 +387,7 @@ const ProyectoAsigInfo = () => {
                     type="text"
                     className="form-control"
                     placeholder="Leyenda de Responsiva"
+                    defaultValue={proyecto.leyenda_responsiva}
                     name="responsiva"
                   />
                 </div>

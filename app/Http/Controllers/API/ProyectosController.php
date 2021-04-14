@@ -100,16 +100,14 @@ class ProyectosController extends Controller
         $result = DB::transaction(function () use ($request,$id) {
 
             try {
-
                 $proyecto = Proyectos::find($id);
-                $proyecto->nombre_proyecto = $request['nombre_proyecto'];
                 $proyecto->nombre_sucursal = $request["nombre_sucursal"];
                 $proyecto->nombre_encargado = $request["nombre_encargado"];
                 $proyecto->telefono = $request["telefono"];
-                $proyecto->email_encargado = $request["email_encargado"];
-                $proyecto->logotipo_url = $request["logotipo_url"];
+                $proyecto->email_encargado = $request["email"];
+                $proyecto->logotipo = $request["logotipo"];
                 $proyecto->comentarios = $request["comentarios"];
-                $proyecto->leyenda_responsiva = $request["leyenda_responsiva"];
+                $proyecto->leyenda_responsiva = $request["responsiva"];
                 $proyecto->save();
 
                 $direccion = Proyectos::find($id)->Direccion;
@@ -118,8 +116,8 @@ class ProyectosController extends Controller
                 $direccion->cp = $request["cp"];
                 $direccion->estado = $request["estado"];
                 $direccion->municipio = $request["municipio"];
-                $direccion->numint = $request["numero_int"];
-                $direccion->numext = $request["numero_ext"];
+                $direccion->numint = $request["numint"];
+                $direccion->numext = $request["numext"];
                 $direccion->save();
 
                 $response['message'] = "Proyecto Editado";
@@ -171,7 +169,7 @@ class ProyectosController extends Controller
 
         try {
 
-            $data = Proyectos::with("Direccion")->where('estatus', '!=',2)->find($id);
+            $data = Proyectos::with("Direccion", "Direccion.Estado","Direccion.Municipio")->where('estatus', '!=',2)->find($id);
 
             if ($data) {
                 $response['data'] = $data;

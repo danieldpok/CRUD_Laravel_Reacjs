@@ -10,8 +10,12 @@ proyectos.createProyectoName = async (data) => {
     return res;
 }
 
+const config = {
+    headers: { 'content-type': 'multipart/form-data' }
+}
+
 proyectos.createProyectoInfo = async (data) => {
-    const UrlCreate = baseUrl + "/createInfo/" + data.id_proyecto
+    const UrlCreate = baseUrl + "/createInfo/" + data.idProyecto
     const res = await axios.put(UrlCreate, data)
         .then(response => { return response.data })
         .catch(error => { return error.response; })
