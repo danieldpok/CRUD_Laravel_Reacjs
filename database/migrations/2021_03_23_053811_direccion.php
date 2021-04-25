@@ -23,7 +23,7 @@ class Direccion extends Migration
             $table->foreign('estado')->references('id')->on('cat_dir_estados');
             $table->integer('municipio')->unsigned();
             $table->foreign('municipio')->references('id')->on('cat_dir_municipios');
-            $table->string('cp',10);
+            $table->string('cp',10)->nullable();
             $table->timestamps();
         });
     }

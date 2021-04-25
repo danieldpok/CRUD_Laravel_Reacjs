@@ -52,3 +52,29 @@ Route::post('/proyectos/create', 'App\Http\Controllers\API\ProyectosController@c
 Route::put('/proyectos/createInfo/{id}', 'App\Http\Controllers\API\ProyectosController@createProyectoInfo');
 Route::put('/proyectos/{id}', 'App\Http\Controllers\API\ProyectosController@editProyectoNombre');
 Route::delete('/proyectos/{id}', 'App\Http\Controllers\API\ProyectosController@deleteProyecto');
+//ROLES
+Route::get('/roles/list', 'App\Http\Controllers\API\RolesController@listRoles');
+Route::get('/roles/{id}', 'App\Http\Controllers\API\RolesController@getRol');
+Route::post('/roles/create', 'App\Http\Controllers\API\RolesController@createRol');
+Route::put('/roles/{id}', 'App\Http\Controllers\API\RolesController@editRol');
+Route::delete('/roles/{id}', 'App\Http\Controllers\API\RolesController@deleteRol');
+//SERVICIOS
+Route::get('/servicios/list', 'App\Http\Controllers\API\ServiciosController@listServicios');
+Route::get('/servicios/{id}', 'App\Http\Controllers\API\ServiciosController@getServicio');
+Route::post('/servicios/create', 'App\Http\Controllers\API\ServiciosController@createServicio');
+Route::put('/servicios/{id}', 'App\Http\Controllers\API\ServiciosController@editServicio');
+Route::delete('/servicios/{id}', 'App\Http\Controllers\API\ServiciosController@deleteServicio');
+//TIPO_ANEXOS
+Route::get('/tipoAnexo/list', 'App\Http\Controllers\API\TipoAnexoController@listTipoAnexo');
+Route::get('/tipoAnexo/{id}', 'App\Http\Controllers\API\TipoAnexoController@getTipoAnexo');
+Route::post('/tipoAnexo/create', 'App\Http\Controllers\API\TipoAnexoController@createTipoAnexo');
+Route::put('/tipoAnexo/{id}', 'App\Http\Controllers\API\TipoAnexoController@editTipoAnexo');
+Route::delete('/tipoAnexo/{id}', 'App\Http\Controllers\API\TipoAnexoController@deleteTipoAnexo');
+
+//ASIGNACION DE ACTIVIDADES
+
+//BANDEJA DE ACTIVIDADES
+
+//BANDEJA DE REVISION
+
+//BANDEJA DE PAGOS

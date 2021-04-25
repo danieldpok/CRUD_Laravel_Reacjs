@@ -11,6 +11,8 @@ import UsuarioEditar from "../containers/Usuarios/UsuarioEditar";
 import UsuarioVer from "../containers/Usuarios/UsuarioVer";
 import Proyectos from "../containers/Proyectos/Proyectos";
 import ProyectoAsigInfo from "../containers/Proyectos/ProyectoAsigInfo";
+import Roles from '../containers/Roles/Roles'
+
 
 const App = () => {
     return (
@@ -24,6 +26,7 @@ const App = () => {
                     <Route exact path="/usuarios/:id/ver" component={UsuarioVer} />
                     <Route exact path="/proyectos" component={Proyectos} />
                     <Route exact path="/proyectos/asignarInformacion/:id" component={ProyectoAsigInfo} />
+                    <Route exact path="/roles" component={Roles} />
                     <Route component={NotFound} />
                 </Switch>
             </Layout>

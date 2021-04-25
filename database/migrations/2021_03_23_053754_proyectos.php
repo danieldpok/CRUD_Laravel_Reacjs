@@ -20,7 +20,7 @@ class Proyectos extends Migration
             $table->string('nombre_encargado',120)->nullable();
             $table->string('telefono',10)->nullable();
             $table->string('email_encargado',120)->nullable();
-            $table->blob('logotipo')->nullable();
+            $table->binary('logotipo')->nullable();
             $table->string('comentarios',500)->nullable();
             $table->string('leyenda_responsiva',500)->nullable();
             $table->integer('id_direccion')->unsigned();
