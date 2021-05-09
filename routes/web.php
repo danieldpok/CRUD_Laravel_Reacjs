@@ -40,6 +40,8 @@ Route::get('/proyectos', 'App\Http\Controllers\PrincipalHomeController@index');
 Route::get('/proyectos/asignarInformacion/{id}', 'App\Http\Controllers\PrincipalHomeController@index');
 
 Route::get('/roles', 'App\Http\Controllers\PrincipalHomeController@index');
-
-
+Route::get('/servicios', 'App\Http\Controllers\PrincipalHomeController@index');
+Route::get('/tipoAnexos', 'App\Http\Controllers\PrincipalHomeController@index');
+Route::get('/preguntas', 'App\Http\Controllers\PrincipalHomeController@index');
+Route::get('/asignacionActividades', 'App\Http\Controllers\PrincipalHomeController@index');
 

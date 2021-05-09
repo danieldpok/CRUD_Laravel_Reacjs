@@ -74,7 +74,6 @@ class RolesController extends Controller
 
                 $rol = CatRoles::find($id);
                 $rol->rol = $request['name'];
-                $rol->estatus = $request["estatus"];
                 $rol->save();
 
                 $response['message'] = "Rol Editado";

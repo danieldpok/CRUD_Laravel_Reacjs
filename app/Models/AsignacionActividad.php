@@ -28,7 +28,7 @@ class AsignacionActividad extends Model
     }
 
     public function localidad(){
-        return $this->belongsTo(CatDirMunicipio::class, 'localidad', 'id');
+        return $this->belongsTo(CatDirEstado::class, 'localidad', 'id');
     }
 
     public function servicios(){

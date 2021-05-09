@@ -46,7 +46,7 @@ class TipoAnexoController extends Controller
             try {
 
                 $tAnexo = new CatAnexos();
-                $tAnexo->tipo_anexo = $request['name'];
+                $tAnexo->tipo_anexo = $request['tipo_anexo'];
                 $tAnexo->save();
 
                 $response['message'] = "Tipo Anexo Creado";
@@ -72,7 +72,7 @@ class TipoAnexoController extends Controller
             try {
 
                 $tAnexo = CatAnexos::find($id);
-                $tAnexo->tipo_anexo = $request['name'];
+                $tAnexo->tipo_anexo = $request['tipo_anexo'];
                 $tAnexo->estatus = $request["estatus"];
                 $tAnexo->save();
 

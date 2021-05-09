@@ -1,8 +1,8 @@
-const baseUrl = "http://localhost/api/roles";
+const baseUrl = "http://localhost/api/catalogos/roles";
 import axios from "axios";
 const roles = {};
 
-proyectos.createProyectoName = async (data) => {
+roles.createRol = async (data) => {
     const UrlCreate = baseUrl + "/create"
     const res = await axios.post(UrlCreate, data)
         .then(response => { return response.data })
@@ -10,19 +10,7 @@ proyectos.createProyectoName = async (data) => {
     return res;
 }
 
-const config = {
-    headers: { 'content-type': 'multipart/form-data' }
-}
-
-proyectos.createProyectoInfo = async (data) => {
-    const UrlCreate = baseUrl + "/createInfo/" + data.idProyecto
-    const res = await axios.put(UrlCreate, data)
-        .then(response => { return response.data })
-        .catch(error => { return error.response; })
-    return res;
-}
-
-proyectos.get = async (id) => {
+roles.get = async (id) => {
     const UrlGet = baseUrl + "/" + id
     const res = await axios.get(UrlGet)
         .then(response => { return response.data })
@@ -30,23 +18,23 @@ proyectos.get = async (id) => {
     return res;
 }
 
-proyectos.list = async () => {
-    const UrlList = baseUrl + "/list/"
+roles.list = async () => {
+    const UrlList = baseUrl + "/"
     const res = await axios.get(UrlList)
         .then(response => { return response.data })
         .catch(error => { return error; })
     return res;
 }
 
-proyectos.update = async (data) => {
-    const UrlUpdate = baseUrl + "/" + data.id_proyecto
+roles.update = async (data) => {
+    const UrlUpdate = baseUrl + "/" + data.id
     const res = await axios.put(UrlUpdate, data)
         .then(response => { return response.data })
         .catch(error => { return error; })
     return res;
 }
 
-proyectos.delete = async (id) => {
+roles.delete = async (id) => {
     const UrlDelete = baseUrl + "/" + id
     const res = await axios.delete(UrlDelete)
         .then(response => { return response.data })
@@ -54,4 +42,4 @@ proyectos.delete = async (id) => {
     return res;
 }
 
-export default proyectos
+export default roles

@@ -3,6 +3,7 @@ import Rutas from "../../components/Rutas";
 import { toast } from "react-toastify";
 import RolesForm from "./RolesForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import rolServices from "../../components/services/Roles"
 
 const Roles = () => {
     const [status, setStatus] = useState(false);
@@ -14,49 +15,38 @@ const Roles = () => {
     const [currentId, setCurrentId] = useState("");
 
     const addTask = async (linkObject) => {
-        console.log(linkObject.name);
-        const snapshot = await db
-            .collection("roles")
-            .where("name", "==", linkObject.name)
-            .get();
-        console.log(snapshot.empty);
-
-        if (snapshot.empty) {
-            if (currentId === "") {
-                //para diferenciar el mismo boton si actualiza o es nuevo
-                await db.collection("roles").doc().set(linkObject);
-                console.log("nueva tarea agregada");
-                toast("Nueva tarea agregada", { type: "success" });
-            } else {
-                await db.collection("roles").doc(currentId).update(linkObject);
-                toast("Actualizado con exito", { type: "info" });
-                setCurrentId("");
-            }
+        if (currentId === "") {
+            //para diferenciar el mismo boton si actualiza o es nuevo
+            const res = await rolServices.createRol(linkObject);
+            getLink();
+            toast("Nueva tarea agregada", { type: "success" });
         } else {
-            toast("Existe el usuario", { type: "error" });
+            const res = await rolServices.update(linkObject)
+            getLink();
+            toast("Actualizado con exito", { type: "info" });
+            setCurrentId("");
         }
+
     };
 
-    const onDeleteLink = (id) => {
-        if (window.confirm("seguro de elimiar")) {
-            db.collection("roles").doc(id).delete();
-            toast("Mensaje Eliminado", { type: "error", autoClose: 2000 });
+    const onDeleteLink = async (id) => {
+        if (window.confirm("Deseas Eliminar")) {
+            const res = await rolServices.delete(id);
+            getLink();
+            toast("Rol Eliminado", { type: "error", autoClose: 2000 });
         }
-    };
-
-    const onEditLink = () => {
-        console.log("editar");
     };
 
     const getLink = async () => {
-        db.collection("roles").onSnapshot((querySnapshot) => {
-            const docs = [];
-            querySnapshot.forEach((doc) => {
-                docs.push({ ...doc.data(), id: doc.id });
+        const res = await rolServices.list();
+        const nuevo = [];
+        res.data.forEach((doc) => {
+            nuevo.push({
+                id: doc.id,
+                rol: doc.rol,
             });
-            console.log(docs);
-            setLinks(docs);
         });
+        setLinks(nuevo);
     };
 
     useEffect(() => {
@@ -76,7 +66,7 @@ const Roles = () => {
                         <div className="card mb-1" key={link.id}>
                             <div className="card-body">
                                 <div className="d-flex justify-content-between">
-                                    <h4> {link.name}</h4>
+                                    <h4> {link.rol}</h4>
                                     <div>
                                         <span
                                             className="text-danger p-2"

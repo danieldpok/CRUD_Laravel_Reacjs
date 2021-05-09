@@ -8,6 +8,7 @@ use App\Models\CatServicios;
 use App\Models\CatRoles;
 use App\Models\CatDirEstado;
 use App\Models\CatDirMunicipio;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -351,6 +352,17 @@ class CatalogosController extends Controller
 
         return $result;
 
+    }
+
+    //List Tecnicos
+
+    public function listTecnicos(){
+        $data = User::where("estatus",'!=', 2)
+            ->where("id_rol",4)
+            ->get();
+        $response['data'] = $data;
+        $response['success'] = true;
+        return $response;
     }
 
 

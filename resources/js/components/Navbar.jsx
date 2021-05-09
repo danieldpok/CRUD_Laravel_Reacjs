@@ -136,6 +136,14 @@ const Navbar = () => {
           </Link>
                 </li>
                 <li className="nav-item">
+                    <Link to="/preguntas" className="nav-link text-dark font-italic">
+                        <span className="mr-3 text-danger">
+                            <FontAwesomeIcon icon="stroopwafel" />
+                        </span>
+            Preguntas
+          </Link>
+                </li>
+                <li className="nav-item">
                     <Link to="/permisos" className="nav-link text-dark font-italic">
                         <span className="mr-3 text-danger">
                             <FontAwesomeIcon icon="stroopwafel" />

@@ -58,9 +58,12 @@ class AsignacionActividadesController extends Controller
                 $asignacion->telefono_encargado = $request['telefonoEncargado'];
                 $asignacion->numero_servicios = $request['num_servicio'];
                 $asignacion->costo_servicio = $request['costo_servicio'];
-                $asignacion->impuesto_iva = $request['iva'];
-                $asignacion->impuesto_isr = $request['isr'];
-                $asignacion->impuesto_iva_retencion = $request['retencioniva'];
+                if ($request['iva']=='on'){$check_iva=1;}else{$check_iva=0;}
+                $asignacion->impuesto_iva = $check_iva;
+                if ($request['isr']=='on'){$check_isr=1;}else{$check_isr=0;}
+                $asignacion->impuesto_isr = $check_isr;
+                if ($request['retencioniva']=='on'){$check_retencion=1;}else{$check_retencion=0;}
+                $asignacion->impuesto_iva_retencion = $check_retencion;
                 $asignacion->impuesto_isr_total = $request['isr_total'];
                 $asignacion->impuesto_iva_retencion_total = $request['retencioniva_total'];
                 $asignacion->comentarios = $request['comentarios'];
@@ -87,7 +90,6 @@ class AsignacionActividadesController extends Controller
         $result = DB::transaction(function () use ($request,$id) {
 
             try {
-
                 $asignacion = AsignacionActividad::find($id);
                 $asignacion->user_id = $request['tecnico'];
                 $asignacion->id_proyecto = $request['proyecto'];
@@ -99,9 +101,12 @@ class AsignacionActividadesController extends Controller
                 $asignacion->telefono_encargado = $request['telefonoEncargado'];
                 $asignacion->numero_servicios = $request['num_servicio'];
                 $asignacion->costo_servicio = $request['costo_servicio'];
-                $asignacion->impuesto_iva = $request['iva'];
-                $asignacion->impuesto_isr = $request['isr'];
-                $asignacion->impuesto_iva_retencion = $request['retencioniva'];
+                if ($request['iva']=='on'){$check_iva=1;}else{$check_iva=0;}
+                $asignacion->impuesto_iva = $check_iva;
+                if ($request['isr']=='on'){$check_isr=1;}else{$check_isr=0;}
+                $asignacion->impuesto_isr = $check_isr;
+                if ($request['retencioniva']=='on'){$check_retencion=1;}else{$check_retencion=0;}
+                $asignacion->impuesto_iva_retencion = $check_retencion;
                 $asignacion->impuesto_isr_total = $request['isr_total'];
                 $asignacion->impuesto_iva_retencion_total = $request['retencioniva_total'];
                 $asignacion->comentarios = $request['comentarios'];

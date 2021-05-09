@@ -18,6 +18,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//CATALOGOS PARA FORM
+Route::get('/catalogos/tecnicos', 'App\Http\Controllers\API\CatalogosController@listTecnicos');
+Route::get('/catalogos/proyectos', 'App\Http\Controllers\API\ProyectosController@listProyectos');
+
+
 //ESTADOS Y MUNICIPIO
 Route::get('/catalogos/estados', 'App\Http\Controllers\API\CatalogosController@list_catEstados');
 Route::get('/catalogos/municipios/{id}', 'App\Http\Controllers\API\CatalogosController@list_catMunicipios');
@@ -74,7 +79,7 @@ Route::delete('/tipoAnexo/{id}', 'App\Http\Controllers\API\TipoAnexoController@d
 Route::get('/asignacionActividades/list', 'App\Http\Controllers\API\AsignacionActividadesController@listAsignacionActividades');
 Route::get('/asignacionActividades/{id}', 'App\Http\Controllers\API\AsignacionActividadesController@getAsignacionActividad');
 Route::post('/asignacionActividades/create', 'App\Http\Controllers\API\AsignacionActividadesController@createAsignacionActividad');
-Route::put('/asignacionActividades/{id}', 'App\Http\Controllers\API\AsignacionActividadesController@editAsignacionActividad');
+Route::post('/asignacionActividades/update/{id}', 'App\Http\Controllers\API\AsignacionActividadesController@editAsignacionActividad');
 Route::delete('/asignacionActividades/{id}', 'App\Http\Controllers\API\AsignacionActividadesController@deleteAsignacionActividad');
 //BANDEJA DE ACTIVIDADES
 Route::post('/bandejaActividades/list', 'App\Http\Controllers\API\BandejaActividadController@listBandejaActividades');

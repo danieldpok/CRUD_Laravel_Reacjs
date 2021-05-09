@@ -11,8 +11,14 @@ import UsuarioEditar from "../containers/Usuarios/UsuarioEditar";
 import UsuarioVer from "../containers/Usuarios/UsuarioVer";
 import Proyectos from "../containers/Proyectos/Proyectos";
 import ProyectoAsigInfo from "../containers/Proyectos/ProyectoAsigInfo";
-import Roles from '../containers/Roles/Roles'
-
+import Roles from '../containers/Roles/Roles';
+import Servicios from '../containers/Servicios/Servicios';
+import TipoAnexos from '../containers/TipoAnexos/TipoAnexos';
+import Preguntas from '../containers/Preguntas/Preguntas';
+import AsignacionActividades from '../containers/AsignacionActividades/AsignacionActividades';
+import AsignacionActividadesNuevo from '../containers/AsignacionActividades/AsignacionActividadesNuevo';
+import AsignacionActividadesEditar from '../containers/AsignacionActividades/AsignacionActividadesEditar';
+import AsignacionActividadesVer from '../containers/AsignacionActividades/AsignacionActividadesVer';
 
 const App = () => {
     return (
@@ -27,6 +33,25 @@ const App = () => {
                     <Route exact path="/proyectos" component={Proyectos} />
                     <Route exact path="/proyectos/asignarInformacion/:id" component={ProyectoAsigInfo} />
                     <Route exact path="/roles" component={Roles} />
+                    <Route exact path="/servicios" component={Servicios} />
+                    <Route exact path="/tipoanexos" component={TipoAnexos} />
+                    <Route exact path="/preguntas" component={Preguntas} />
+                    <Route exact path="/asignacionActividades" component={AsignacionActividades} />
+                    <Route
+                        exact
+                        path="/asignacionActividades/nuevo"
+                        component={AsignacionActividadesNuevo}
+                    />
+                    <Route
+                        exact
+                        path="/asignacionActividades/:id/editar"
+                        component={AsignacionActividadesEditar}
+                    />
+                    <Route
+                        exact
+                        path="/asignacionActividades/:id/ver"
+                        component={AsignacionActividadesVer}
+                    />
                     <Route component={NotFound} />
                 </Switch>
             </Layout>

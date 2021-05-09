@@ -26,4 +26,28 @@ catalogos.list_catMunicipios = async (id) => {
     return res;
 }
 
+catalogos.list_tecnicos = async () => {
+    const urlList = baseCatUrl + "/tecnicos"
+    const res = await axios.get(urlList)
+        .then(response => { return response.data })
+        .catch(error => { return error; })
+    return res;
+}
+
+catalogos.list_proyectos = async () => {
+    const urlList = baseCatUrl + "/proyectos"
+    const res = await axios.get(urlList)
+        .then(response => { return response.data })
+        .catch(error => { return error; })
+    return res;
+}
+
+catalogos.list_servicios = async () => {
+    const urlList = baseCatUrl + "/servicios/list"
+    const res = await axios.get(urlList)
+        .then(response => { return response.data })
+        .catch(error => { return error; })
+    return res;
+}
+
 export default catalogos

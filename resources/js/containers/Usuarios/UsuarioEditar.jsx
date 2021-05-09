@@ -22,7 +22,7 @@ const UsuarioEditar = () => {
   const [municipiosDF, setMunicipiosDF] = useState([]);
   const [buttonState, setButtonState] = useState(false);
   const [usuario, setUsuario] = useState([]);
-  const [persona, setPersona] = useState([]);
+
   const [direcciond, setDirecciond] = useState([]);
   const [direcciondf, setDirecciondf] = useState([]);
   const [cuentabancaria, setCuentabancaria] = useState([]);
@@ -50,7 +50,6 @@ const UsuarioEditar = () => {
   const getUsuario = async (id) => {
     const res = await usuariosServices.get(id);
     setUsuario(res.data);
-    setPersona(res.data.persona);
     setDirecciond(res.data.direccion_d);
     setDirecciondf(res.data.direccion_d_f);
     setCuentabancaria(res.data.cuentabancaria);
@@ -178,7 +177,7 @@ const UsuarioEditar = () => {
                     className="form-control"
                     placeholder="Nombre"
                     name="nombre"
-                    defaultValue={persona.nombre}
+                    defaultValue={usuario.persona?.nombre || ''}
                     ref={register({
                       required: "Este Campo es requerido",
                       minLength: {
@@ -198,7 +197,7 @@ const UsuarioEditar = () => {
                     className="form-control"
                     placeholder="Apellido Paterno"
                     name="paterno"
-                    defaultValue={persona.apellidoP}
+                    defaultValue={usuario.persona?.apellidoP || ''}
                     ref={register({
                       required: "Este Campo es requerido",
                     })}
@@ -216,7 +215,7 @@ const UsuarioEditar = () => {
                     className="form-control"
                     placeholder="Apellido Materno"
                     name="materno"
-                    defaultValue={persona.apellidoM}
+                    defaultValue={usuario.persona?.apellidoM || ''}
                   />
                 </div>
                 <div className="form-group col-md-6 mb-2">
@@ -226,7 +225,7 @@ const UsuarioEditar = () => {
                     className="form-control"
                     placeholder="Numero de seguro Social"
                     name="num_seguro_social"
-                    defaultValue={persona.numero_social}
+                    defaultValue={usuario.persona?.numero_social || ''}
                     ref={register({
                       required: "Este Campo es requerido",
                     })}
@@ -262,7 +261,7 @@ const UsuarioEditar = () => {
                     className="form-control"
                     placeholder="CURP"
                     name="curp"
-                    defaultValue={persona.curp}
+                    defaultValue={usuario.persona?.curp || ''}
                     ref={register({
                       required: "Este Campo es requerido",
                     })}
@@ -280,7 +279,7 @@ const UsuarioEditar = () => {
                     className="form-control"
                     placeholder="RFC"
                     name="rfc"
-                    defaultValue={persona.rfc}
+                    defaultValue={usuario.persona?.rfc || ''}
                     ref={register({
                       required: "Este Campo es requerido",
                     })}
@@ -296,7 +295,7 @@ const UsuarioEditar = () => {
                     className="form-control"
                     placeholder="Razon Social"
                     name="razon_social"
-                    defaultValue={persona.razon_social}
+                    defaultValue={usuario.persona?.razon_social || ''}
                     ref={register({
                       required: "Este Campo es requerido",
                     })}
@@ -316,7 +315,7 @@ const UsuarioEditar = () => {
                     className="form-control"
                     placeholder="INE"
                     name="ine"
-                    defaultValue={persona.ine}
+                    defaultValue={usuario.persona?.ine || ''}
                     ref={register({
                       required: "Este Campo es requerido",
                     })}
@@ -371,7 +370,7 @@ const UsuarioEditar = () => {
                     className="form-control"
                     placeholder="Telefono"
                     name="telefono1"
-                    defaultValue={persona.telefono1}
+                    defaultValue={usuario.persona?.telefono1 || ''}
                     ref={register({
                       required: "Este Campo es requerido",
                     })}
@@ -387,7 +386,7 @@ const UsuarioEditar = () => {
                     className="form-control"
                     placeholder="Telefono"
                     name="telefono2"
-                    defaultValue={persona.telefono2}
+                    defaultValue={usuario.persona?.telefono2 || ''}
                   />
                 </div>
               </div>
@@ -417,6 +416,7 @@ const UsuarioEditar = () => {
                     id="cat_roles"
                     name="cat_roles"
                     className="form-control"
+                    value={usuario.id_rol}
                     ref={register({
                       required: "Este Campo es requerido",
                     })}
@@ -484,7 +484,7 @@ const UsuarioEditar = () => {
                     className="form-control"
                     placeholder="Calle"
                     name="d_calle"
-                    defaultValue={direcciond.calle}
+                    defaultValue={usuario.direccion_d?.calle || ''}
                     ref={register({
                       required: "Este Campo es requerido",
                     })}

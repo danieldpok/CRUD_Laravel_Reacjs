@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
+import rolServices from "../../components/services/Roles"
 
 const initialStateValues = {
-    name: "",
-    estatus: true,
+    rol: "",
 };
 
 const RolesForm = (props) => {
@@ -20,8 +20,8 @@ const RolesForm = (props) => {
     };
 
     const getLinkbyId = async (id) => {
-        const doc = await db.collection("roles").doc(id).get();
-        setValues({ ...doc.data() });
+        const doc = await rolServices.get(id);
+        setValues({ ...doc.data });
     };
 
     useEffect(() => {
@@ -40,13 +40,13 @@ const RolesForm = (props) => {
                     type="text"
                     className="form-control"
                     placeholder="Nombre de Rol"
-                    name="name"
+                    name="rol"
                     required
                     onChange={handleInputChange}
-                    value={values.name}
+                    value={values.rol}
                 />
             </div>
-            <div className="from-group input-group mb-2">
+            {/*<div className="from-group input-group mb-2">
                 <div className="custom-control custom-switch">
                     <input
                         type="checkbox"
@@ -58,11 +58,12 @@ const RolesForm = (props) => {
                         onChange={handleInputChange}
                         value={values.estatus}
                     />
-                    <label className="custom-control-label" for="customSwitch2">
+                    <label className="custom-control-label">
                         Estatus
           </label>
                 </div>
             </div>
+           */}
             <button className="btn btn-primary">
                 {props.currentId === "" ? "Save" : "Update"}
             </button>
