@@ -76,7 +76,18 @@ const Navbar = () => {
                 </li>
                 <li className="nav-item">
                     <Link
-                        to="/bandejaPagos"
+                        to="/bandejaPosPago"
+                        className="nav-link text-dark font-italic"
+                    >
+                        <span className="mr-3 text-danger">
+                            <FontAwesomeIcon icon="address-card" />
+                        </span>
+            Bandeja de PosPagos
+          </Link>
+                </li>
+                <li className="nav-item">
+                    <Link
+                        to="/bandejaPago"
                         className="nav-link text-dark font-italic"
                     >
                         <span className="mr-3 text-danger">

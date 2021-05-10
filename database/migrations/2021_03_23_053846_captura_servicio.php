@@ -45,10 +45,9 @@ class CapturaServicio extends Migration
                 7=Revision Autorizada VoBo  -- Debe de visualizarse en la bandeja del tecnico para aduntar factura
                 8=Solicitar VoBo de Factura
                 9=VoBo de Factura -- se visualiza para que puedan autorizar el pago
-                10=Autorizacion para pago
-                11=Pendiente de pago
-                12=Servicio pagado
-                13=Cancelado
+                10=Pendiente de pago
+                11=Servicio pagado
+                12=Cancelado
              */
             $table->timestamps();
         });

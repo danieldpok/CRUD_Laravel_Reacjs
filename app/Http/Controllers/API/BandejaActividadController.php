@@ -5,17 +5,18 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\AsignacionActividad;
 use App\Models\CapturaServicio;
+use App\Models\EncuestaRespuestas;
+use App\Models\RevisionActividad;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class BandejaActividadController extends Controller
 {
-    public function listBandejaActividades (Request $request){
-        $data = AsignacionActividad::with("user_id","id_proyecto","id_cat_servicio","localidad" )
-            ->where('estatus', '!=',2)
-            ->where('estatus', '!=',3)
-            ->where('user_id',$request['user_id'])
+    public function listBandejaActividades (Request $request, $estatus){
+        $data = AsignacionActividad::with("user_id","id_proyecto","id_cat_servicio","localidad","servicios" )
+            ->where('estatus', $estatus)
+            //->where('user_id',$request['user_id'])
             ->get();
         $response['data'] = $data;
         $response['success'] = true;
@@ -29,7 +30,7 @@ class BandejaActividadController extends Controller
             $data = AsignacionActividad::with("user_id","id_proyecto","id_cat_servicio","localidad","servicios" )
                 ->where('estatus', '!=',2)
                 ->where('estatus', '!=',3)
-                ->where('user_id',$request['user_id'])
+                //->where('user_id',$request['user_id'])
                 ->find($id);
 
             if ($data) {
@@ -109,6 +110,7 @@ class BandejaActividadController extends Controller
                 $history->proceso_realizado = 1;
                 $history->save();
 
+
                 $response['message'] = "Servicio Creado";
                 $response['success'] = true;
 
@@ -168,28 +170,33 @@ class BandejaActividadController extends Controller
 
     }
 
-    public function solicitarRevision(Request $request,$id){
+    public function solicitarRevision(Request $request,$id,$estatus){
 
-        $result = DB::transaction(function () use ($request,$id) {
+        $result = DB::transaction(function () use ($request,$id,$estatus) {
 
             try {
 
-                $servicio = CapturaServicio::
-                          where('id_asignacion_actividades',$id)
-                          ->count('id_captura_servicio');
-
-                $asignacion = AsignacionActividad::find($id);
-                $asignacion->estatus = 6;
-                $asignacion->numero_servicios = $servicio;
-                $asignacion->save();
+                if($estatus==6){                  
+                    $servicio = CapturaServicio::
+                    where('id_asignacion_actividades',$id)
+                    ->count('id_captura_servicio');
+                    $asignacion = AsignacionActividad::find($id);
+                    $asignacion->estatus = 6;
+                    $asignacion->numero_servicios = $servicio;
+                    $asignacion->save();
+                }else{
+                    $asignacion = AsignacionActividad::find($id);
+                    $asignacion->estatus = $estatus;
+                    $asignacion->save();
+                }
 
                 $history = new RevisionActividad();
                 $history->user_id = 1;//variable cookie
                 $history->id_asignacion_actividad = $id;
-                $history->proceso_realizado = 6;
+                $history->proceso_realizado = $estatus;
                 $history->save();
 
-                $response['message'] = "Enviado a Revision";
+                $response['message'] = "Estatus Guardado";
                 $response['success'] = true;
 
 
@@ -225,6 +232,34 @@ class BandejaActividadController extends Controller
                 $response['message'] = "Asignacion Actividad Rechazada";
                 $response['success'] = true;
 
+
+            } catch (\Exception $e) {
+                DB::rollback();
+                $response['message'] = $e->getMessage();
+                $response['success'] = false;
+            }
+
+            return $response;
+        });
+
+        return $result;
+
+    }
+
+    public function createEncuestaServicio(Request $request, $id){
+
+        $result = DB::transaction(function () use ($request, $id) {
+
+            try {
+                $respuesta = new EncuestaRespuestas();
+                $respuesta->id_captura_servicio=$id;
+                //$respuesta->id_pregunta=
+                //$respuesta->respuesta=
+
+                $respuesta->save();
+
+                $response['message'] = "Encuesta Guardada";
+                $response['success'] = true;
 
             } catch (\Exception $e) {
                 DB::rollback();

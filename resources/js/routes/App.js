@@ -19,6 +19,24 @@ import AsignacionActividades from '../containers/AsignacionActividades/Asignacio
 import AsignacionActividadesNuevo from '../containers/AsignacionActividades/AsignacionActividadesNuevo';
 import AsignacionActividadesEditar from '../containers/AsignacionActividades/AsignacionActividadesEditar';
 import AsignacionActividadesVer from '../containers/AsignacionActividades/AsignacionActividadesVer';
+import BandejaAct from "../containers/BandejaActividades/BandejaAct";
+import BandejaActProgreso from "../containers/BandejaActividades/BandejaActProgreso";
+import BandejaActCaptura from "../containers/BandejaActividades/BandejaActCaptura";
+import BandejaActPdf from "../containers/BandejaActividades/BandejaActPdf";
+import BandejaActFirma from "../containers/BandejaActividades/BandejaActFirma";
+import BandejaActEncuesta from "../containers/BandejaActividades/BandejaActEncuesta";
+import BandejaPendientePago from "../containers/BandejaActividades/BandejaPendientePago";
+import BandejaPendienteFactura from "../containers/BandejaActividades/BandejaPendienteFactura";
+import BandejaPagadas from "../containers/BandejaActividades/BandejaPagadas";
+import BandejaCanceladas from "../containers/BandejaActividades/BandejaCanceladas";
+import BandejaRevision from "../containers/BandejaRevision/BandejaRevision";
+import ServicioRevision from "../containers/BandejaRevision/ServicioRevision";
+import BandejaRevisionFactura from "../containers/BandejaRevision/BandejaRevisionFactura";
+import BandejaPosPago from "../containers/BandejaPosPago/BandejaPosPago";
+import BandejaPago from "../containers/BandejaPago/BandejaPago";
+import BandejaPagoRealizado from "../containers/BandejaPago/BandejaPagoRealizado";
+import BandejaPagoCancelado from "../containers/BandejaPago/BandejaPagoCancelado";
+
 
 const App = () => {
     return (
@@ -51,6 +69,71 @@ const App = () => {
                         exact
                         path="/asignacionActividades/:id/ver"
                         component={AsignacionActividadesVer}
+                    />
+                    <Route exact path="/bandejaActividades" component={BandejaAct} />
+                    <Route exact path="/bandejaActividades/pendientePago" component={BandejaPendientePago} />
+                    <Route exact path="/bandejaActividades/pendienteFactura" component={BandejaPendienteFactura} />
+                    <Route exact path="/bandejaActividades/pagadas" component={BandejaPagadas} />
+                    <Route exact path="/bandejaActividades/canceladas" component={BandejaCanceladas} />
+                    <Route
+                        exact
+                        path="/bandejaActividades/:id/progreso"
+                        component={BandejaActProgreso}
+                    />
+                    <Route
+                        exact
+                        path="/bandejaActividades/:id/captura/:idproyecto"
+                        component={BandejaActCaptura}
+                    />
+                    <Route
+                        exact
+                        path="/bandejaActividades/:idAsignacion/encuesta/:id"
+                        component={BandejaActEncuesta}
+                    />
+                    <Route
+                        exact
+                        path="/bandejaActividades/:idAsignacion/firma/:id"
+                        component={BandejaActFirma}
+                    />
+                    <Route
+                        exact
+                        path="/bandejaActividades/:idAsignacion/pdf/:id"
+                        component={BandejaActPdf}
+                    />
+                    <Route
+                        exact
+                        path="/bandejaRevision"
+                        component={BandejaRevision}
+                    />
+                    <Route
+                        exact
+                        path="/bandejaRevisionFactura"
+                        component={BandejaRevisionFactura}
+                    />
+                    <Route
+                        exact
+                        path="/bandejaRevision/:id/revision"
+                        component={ServicioRevision}
+                    />
+                    <Route
+                        exact
+                        path="/bandejaPosPago"
+                        component={BandejaPosPago}
+                    />
+                    <Route
+                        exact
+                        path="/bandejaPago"
+                        component={BandejaPago}
+                    />
+                    <Route
+                        exact
+                        path="/bandejaPagoRealizado"
+                        component={BandejaPagoRealizado}
+                    />
+                    <Route
+                        exact
+                        path="/bandejaPagoCancelado"
+                        component={BandejaPagoCancelado}
                     />
                     <Route component={NotFound} />
                 </Switch>

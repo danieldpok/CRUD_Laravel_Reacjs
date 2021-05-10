@@ -44,4 +44,7 @@ Route::get('/servicios', 'App\Http\Controllers\PrincipalHomeController@index');
 Route::get('/tipoAnexos', 'App\Http\Controllers\PrincipalHomeController@index');
 Route::get('/preguntas', 'App\Http\Controllers\PrincipalHomeController@index');
 Route::get('/asignacionActividades', 'App\Http\Controllers\PrincipalHomeController@index');
-
+Route::get('/bandejaActividades', 'App\Http\Controllers\PrincipalHomeController@index');
+Route::get('/bandejaRevision', 'App\Http\Controllers\PrincipalHomeController@index');
+Route::get('/bandejaPosPago', 'App\Http\Controllers\PrincipalHomeController@index');
+Route::get('/bandejaPago', 'App\Http\Controllers\PrincipalHomeController@index');

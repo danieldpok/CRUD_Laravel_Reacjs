@@ -50,4 +50,36 @@ catalogos.list_servicios = async () => {
     return res;
 }
 
+catalogos.list_tipoEquipo = async (idproyecto) => {
+    const urlList = baseCatUrl + "/tipoEquipo/" + idproyecto
+    const res = await axios.get(urlList)
+        .then(response => { return response.data })
+        .catch(error => { return error; })
+    return res;
+}
+
+catalogos.list_modeloEquipo = async (idproyecto) => {
+    const urlList = baseCatUrl + "/modeloEquipo/" + idproyecto
+    const res = await axios.get(urlList)
+        .then(response => { return response.data })
+        .catch(error => { return error; })
+    return res;
+}
+
+catalogos.list_modeloMonitor = async (idproyecto) => {
+    const urlList = baseCatUrl + "/modeloMonitor/" + idproyecto
+    const res = await axios.get(urlList)
+        .then(response => { return response.data })
+        .catch(error => { return error; })
+    return res;
+}
+
+catalogos.list_preguntas = async () => {
+    const urlList = baseCatUrl + "/preguntas/list/"
+    const res = await axios.get(urlList)
+        .then(response => { return response.data })
+        .catch(error => { return error; })
+    return res;
+}
+
 export default catalogos

@@ -8,6 +8,7 @@ use App\Models\CatServicios;
 use App\Models\CatRoles;
 use App\Models\CatDirEstado;
 use App\Models\CatDirMunicipio;
+use App\Models\ServicetagProyectos;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -366,4 +367,28 @@ class CatalogosController extends Controller
     }
 
 
+    //Catalogos Equipo Computo
+
+    public function listEquipoComputo($id){
+
+        $data = ServicetagProyectos::Select('tipo')->distinct()->where("id_proyecto", $id)->get();
+        $response['data'] = $data;
+        $response['success'] = true;
+        return $response;
+    }
+
+    public function listModeloComputo($id){
+        $data = ServicetagProyectos::Select('modelo_equipo')->distinct()->where("id_proyecto", $id)->get();
+        $response['data'] = $data;
+        $response['success'] = true;
+        return $response;
+    }
+    public function listModeloMonitor($id){
+        $data = ServicetagProyectos::Select('modelo_monitor')->distinct()->where("id_proyecto", $id)->get();
+        $response['data'] = $data;
+        $response['success'] = true;
+        return $response;
+    }
+
+    //Visualizacion de Preguntas
 }

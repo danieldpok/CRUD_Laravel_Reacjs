@@ -22,6 +22,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/catalogos/tecnicos', 'App\Http\Controllers\API\CatalogosController@listTecnicos');
 Route::get('/catalogos/proyectos', 'App\Http\Controllers\API\ProyectosController@listProyectos');
 
+Route::get('/catalogos/tipoEquipo/{id}', 'App\Http\Controllers\API\CatalogosController@listEquipoComputo');
+Route::get('/catalogos/modeloEquipo/{id}', 'App\Http\Controllers\API\CatalogosController@listModeloComputo');
+Route::get('/catalogos/modeloMonitor/{id}', 'App\Http\Controllers\API\CatalogosController@listModeloMonitor');
+
 
 //ESTADOS Y MUNICIPIO
 Route::get('/catalogos/estados', 'App\Http\Controllers\API\CatalogosController@list_catEstados');
@@ -82,15 +86,15 @@ Route::post('/asignacionActividades/create', 'App\Http\Controllers\API\Asignacio
 Route::post('/asignacionActividades/update/{id}', 'App\Http\Controllers\API\AsignacionActividadesController@editAsignacionActividad');
 Route::delete('/asignacionActividades/{id}', 'App\Http\Controllers\API\AsignacionActividadesController@deleteAsignacionActividad');
 //BANDEJA DE ACTIVIDADES
-Route::post('/bandejaActividades/list', 'App\Http\Controllers\API\BandejaActividadController@listBandejaActividades');
+Route::post('/bandejaActividades/list/{estatus}', 'App\Http\Controllers\API\BandejaActividadController@listBandejaActividades');
 Route::post('/bandejaActividades/{id}', 'App\Http\Controllers\API\BandejaActividadController@getBandejaActividad');
 Route::post('/bandejaActividades/{id}/create', 'App\Http\Controllers\API\BandejaActividadController@createBandejaActividad');
 Route::post('/bandejaActividades/{id}/pdf/{servicio}', 'App\Http\Controllers\API\BandejaActividadController@getBandejaActividadPDF');
 Route::put('/bandejaActividades/{id}/edit/{servicio}', 'App\Http\Controllers\API\BandejaActividadController@editBandejaActividad');
-//Route::post('/bandejaActividades/{id}/firma/{servicio}', 'App\Http\Controllers\API\BandejaActividadController@createFirmaServicio');
-//Route::post('/bandejaActividades/{id}/encuesta/{servicio}', 'App\Http\Controllers\API\BandejaActividadController@createEncuestaServicio');
+Route::post('/bandejaActividades/{id}/firma/{servicio}', 'App\Http\Controllers\API\BandejaActividadController@createFirmaServicio');
+Route::post('/bandejaActividades/{id}/encuesta/{servicio}', 'App\Http\Controllers\API\BandejaActividadController@createEncuestaServicio');
+Route::put('/bandejaActividades/{id}/solicitarRevision/{estatus}', 'App\Http\Controllers\API\BandejaActividadController@solicitarRevision');
 Route::delete('/bandejaActividades/{id}', 'App\Http\Controllers\API\BandejaActividadController@deleteBandejaActividad');
-Route::put('/bandejaActividades/{id}/solicitarRevision', 'App\Http\Controllers\API\BandejaActividadController@solicitarRevision');
 //BANDEJA DE REVISION
 Route::post('/bandejaRevision/Documentacion/list', 'App\Http\Controllers\API\BandejaRevisionController@listDocumentacion');
 Route::post('/bandejaRevision/Documentacion/{id}', 'App\Http\Controllers\API\BandejaRevisionController@getDocumentoAsignacion');
