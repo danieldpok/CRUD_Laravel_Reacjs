@@ -14,12 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+//PUBLIC
+Route::post('logout','Auth\LoginController@logout');
+
+
+//PRIVATE
+Route::group(['middleware' => ['auth:sanctum']], function () {
+
+Route::get('/catalogos/tecnicos', 'App\Http\Controllers\API\CatalogosController@listTecnicos');
+
 });
 
+
 //CATALOGOS PARA FORM
-Route::get('/catalogos/tecnicos', 'App\Http\Controllers\API\CatalogosController@listTecnicos');
 Route::get('/catalogos/proyectos', 'App\Http\Controllers\API\ProyectosController@listProyectos');
 
 Route::get('/catalogos/tipoEquipo/{id}', 'App\Http\Controllers\API\CatalogosController@listEquipoComputo');

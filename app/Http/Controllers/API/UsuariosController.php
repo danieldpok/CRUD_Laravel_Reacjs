@@ -220,4 +220,6 @@ class UsuariosController extends Controller
         return $result;
 
     }
+
+
 }

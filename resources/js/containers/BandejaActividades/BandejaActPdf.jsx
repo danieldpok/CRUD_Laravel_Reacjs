@@ -1,7 +1,7 @@
 import React from "react";
 
-const BandejaActCaptura = () => {
+const BandejaActPdf = () => {
   return <h1>BandejaActCaptura</h1>;
 };
 
-export default BandejaActCaptura;
+export default BandejaActPdf;

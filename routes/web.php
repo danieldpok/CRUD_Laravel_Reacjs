@@ -30,21 +30,29 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 */
 
-Route::get('/', 'App\Http\Controllers\PrincipalHomeController@index');
-Route::get('/usuarios', 'App\Http\Controllers\PrincipalHomeController@index');
-Route::get('/usuarios/nuevo', 'App\Http\Controllers\PrincipalHomeController@index');
-Route::get('/usuarios/{id}/editar', 'App\Http\Controllers\PrincipalHomeController@index');
-Route::get('/usuarios/{id}/ver', 'App\Http\Controllers\PrincipalHomeController@index');
 
-Route::get('/proyectos', 'App\Http\Controllers\PrincipalHomeController@index');
-Route::get('/proyectos/asignarInformacion/{id}', 'App\Http\Controllers\PrincipalHomeController@index');
+//PRIVATE
+Route::group(['middleware' => ['auth:sanctum']], function () {
 
-Route::get('/roles', 'App\Http\Controllers\PrincipalHomeController@index');
-Route::get('/servicios', 'App\Http\Controllers\PrincipalHomeController@index');
-Route::get('/tipoAnexos', 'App\Http\Controllers\PrincipalHomeController@index');
-Route::get('/preguntas', 'App\Http\Controllers\PrincipalHomeController@index');
-Route::get('/asignacionActividades', 'App\Http\Controllers\PrincipalHomeController@index');
-Route::get('/bandejaActividades', 'App\Http\Controllers\PrincipalHomeController@index');
-Route::get('/bandejaRevision', 'App\Http\Controllers\PrincipalHomeController@index');
-Route::get('/bandejaPosPago', 'App\Http\Controllers\PrincipalHomeController@index');
-Route::get('/bandejaPago', 'App\Http\Controllers\PrincipalHomeController@index');
+
+    Route::get('/', 'App\Http\Controllers\PrincipalHomeController@index');
+    Route::get('/usuarios', 'App\Http\Controllers\PrincipalHomeController@index');
+    Route::get('/usuarios/nuevo', 'App\Http\Controllers\PrincipalHomeController@index');
+    Route::get('/usuarios/{id}/editar', 'App\Http\Controllers\PrincipalHomeController@index');
+    Route::get('/usuarios/{id}/ver', 'App\Http\Controllers\PrincipalHomeController@index');
+
+    Route::get('/proyectos', 'App\Http\Controllers\PrincipalHomeController@index');
+    Route::get('/proyectos/asignarInformacion/{id}', 'App\Http\Controllers\PrincipalHomeController@index');
+
+    Route::get('/roles', 'App\Http\Controllers\PrincipalHomeController@index');
+    Route::get('/servicios', 'App\Http\Controllers\PrincipalHomeController@index');
+    Route::get('/tipoAnexos', 'App\Http\Controllers\PrincipalHomeController@index');
+    Route::get('/preguntas', 'App\Http\Controllers\PrincipalHomeController@index');
+    Route::get('/asignacionActividades', 'App\Http\Controllers\PrincipalHomeController@index');
+    Route::get('/bandejaActividades', 'App\Http\Controllers\PrincipalHomeController@index');
+    Route::get('/bandejaRevision', 'App\Http\Controllers\PrincipalHomeController@index');
+    Route::get('/bandejaPosPago', 'App\Http\Controllers\PrincipalHomeController@index');
+    Route::get('/bandejaPago', 'App\Http\Controllers\PrincipalHomeController@index');
+
+});
+Route::post('logout','Auth\LoginController@logout');

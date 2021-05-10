@@ -67,5 +67,13 @@ usuarios.delete = async (id) => {
     return res;
 }
 
+usuarios.logout = async () => {
+    const UrlDelete = "/logout/"
+    const res = await axios.post(UrlDelete)
+        .then(response => { return response.data })
+        .catch(error => { return error; })
+    return res;
+}
+
 
 export default usuarios

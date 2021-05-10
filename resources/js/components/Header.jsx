@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Form, Button, Card, Container, Alert } from 'react-bootstrap';
+import UsuarioService from "../components/services/Usuarios"
 
 const Header = () => {
 
@@ -9,8 +10,8 @@ const Header = () => {
     const history = useHistory()
 
     async function handleLogout() {
-        setError("")
-
+        const res = await UsuarioService.logout();
+        console.log(res);
     }
 
     return (
@@ -32,7 +33,7 @@ const Header = () => {
                     <span>Notificaciones</span>
                 </div>
                 <div className="col align-baseline">
-                    <strong>email</strong>
+                    <strong></strong>
                     <Button variant="link" onClick={handleLogout}>Log Out</Button>
                 </div>
             </div>

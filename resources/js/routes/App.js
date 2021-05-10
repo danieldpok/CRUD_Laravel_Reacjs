@@ -37,7 +37,6 @@ import BandejaPago from "../containers/BandejaPago/BandejaPago";
 import BandejaPagoRealizado from "../containers/BandejaPago/BandejaPagoRealizado";
 import BandejaPagoCancelado from "../containers/BandejaPago/BandejaPagoCancelado";
 
-
 const App = () => {
     return (
         <BrowserRouter>
