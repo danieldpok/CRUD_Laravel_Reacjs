@@ -53,6 +53,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/bandejaRevision', 'App\Http\Controllers\PrincipalHomeController@index');
     Route::get('/bandejaPosPago', 'App\Http\Controllers\PrincipalHomeController@index');
     Route::get('/bandejaPago', 'App\Http\Controllers\PrincipalHomeController@index');
+    Route::get('/permisos', 'App\Http\Controllers\PrincipalHomeController@index');
 
 });
 Route::post('logout','Auth\LoginController@logout');

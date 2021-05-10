@@ -36,6 +36,8 @@ import BandejaPosPago from "../containers/BandejaPosPago/BandejaPosPago";
 import BandejaPago from "../containers/BandejaPago/BandejaPago";
 import BandejaPagoRealizado from "../containers/BandejaPago/BandejaPagoRealizado";
 import BandejaPagoCancelado from "../containers/BandejaPago/BandejaPagoCancelado";
+import Permisos from "../containers/Permisos/Permisos";
+import PermisosEditar from "../containers/Permisos/CambiarPermisos";
 
 const App = () => {
     return (
@@ -133,6 +135,16 @@ const App = () => {
                         exact
                         path="/bandejaPagoCancelado"
                         component={BandejaPagoCancelado}
+                    />
+                    <Route
+                        exact
+                        path="/permisos"
+                        component={Permisos}
+                    />
+                    <Route
+                        exact
+                        path="/permisos/:id/editar"
+                        component={PermisosEditar}
                     />
                     <Route component={NotFound} />
                 </Switch>
