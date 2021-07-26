@@ -146,7 +146,7 @@ const ProyectoAsigInfo = () => {
             </div>
             <div className="form-body">
               <h4 className="form-section">
-                <FontAwesomeIcon icon="user" /> Datos de sucursal de proyecto
+                <FontAwesomeIcon icon="user" /> Datos de proyecto
               </h4>
               <div className="row">
                 <div className="form-group col-md-12 mb-2">
@@ -233,7 +233,7 @@ const ProyectoAsigInfo = () => {
                 </div>
               </div>
               <h4 className="form-section">
-                <FontAwesomeIcon icon="address-card" /> Direccion Sucursal
+                <FontAwesomeIcon icon="address-card" /> Direccion Proyecto
               </h4>
               <div className="row">
                 <div className="form-group col-12 mb-2">

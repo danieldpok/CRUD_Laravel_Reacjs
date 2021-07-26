@@ -98,15 +98,12 @@ const BandejaPosPago = () => {
           </MDBBtn>
         ),
         cancelar: (
-          <MDBBtn
-            onClick={() => {
-              onCancelarAccion(doc.id_asignacion_actividades);
-            }}
-            size="sm"
-            color="danger"
+          <MDBLink
+            to={`/bandejaRevision/${doc.id_asignacion_actividades}/cancelacion`}
+            className="btn btn-outline-danger btn-sm p-2"
           >
             <i className="fas fa-minus-circle"></i>
-          </MDBBtn>
+          </MDBLink>
         ),
       });
     });

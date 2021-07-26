@@ -67,5 +67,4 @@ bandejaActividades.revisionAsignacion = async (id, estatus) => {
     return res;
 }
 
-
 export default bandejaActividades

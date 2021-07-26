@@ -89,6 +89,13 @@ const Proyectos = () => {
                 >
                   Asignar Informacion de proyecto
                 </Link>
+                <Link
+                  to={`/proyectos/listaDistribucion/${link.id}`}
+                  type="button"
+                  className="btn btn-primary p-2 mt-2"
+                >
+                  Lista de Distribucion
+                </Link>
               </div>
             </div>
           ))}

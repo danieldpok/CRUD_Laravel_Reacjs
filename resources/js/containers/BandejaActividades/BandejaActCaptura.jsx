@@ -329,11 +329,11 @@ const BandejaActCaptura = () => {
               </div>
               <div className="row">
                 <div className="form-group col-12 mb-2">
-                  <label>Observaciones</label>
+                  <label>Actividades Realizadas</label>
                   <textarea
                     type="text"
                     className="form-control"
-                    placeholder="observaciones"
+                    placeholder="Actividades Realizadas"
                     name="usuarioEntregaLegacy"
                   />
                 </div>

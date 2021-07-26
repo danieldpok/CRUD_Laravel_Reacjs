@@ -162,4 +162,31 @@ class BandejaRevisionController extends Controller
 
     }
 
+    public function revisionCancelar(Request $request,$id){
+
+        $result = DB::transaction(function () use ($request,$id) {
+
+            try {
+                $asignacion = AsignacionActividad::find($id);
+                $asignacion->motivo_cancelacion = $request['comentarios'];
+                $asignacion->estatus = 1;
+                $asignacion->save();
+
+                $response['message'] = "Asignacion Cancelada";
+                $response['success'] = true;
+
+
+            } catch (\Exception $e) {
+                DB::rollback();
+                $response['message'] = $e->getMessage();
+                $response['success'] = false;
+            }
+
+            return $response;
+        });
+
+        return $result;
+
+    }
+
 }

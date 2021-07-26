@@ -9,6 +9,11 @@ import asignacionActividadesServices from "../../components/services/AsignacionA
 const AsignacionActividades = () => {
   const columnas = [
     {
+      label: "IdAsig",
+      field: "idasig",
+      width: 150,
+    },
+    {
       label: "Proyecto",
       field: "proyecto",
       width: 150,
@@ -72,6 +77,7 @@ const AsignacionActividades = () => {
     const nuevo = [];
     res.data.forEach((doc) => {
       nuevo.push({
+        idasig: doc.id_asignacion_actividades,
         proyecto: doc.id_proyecto.nombre_proyecto,
         tecnico: doc.user_id.name,
         localidad: doc.localidad.nombre,

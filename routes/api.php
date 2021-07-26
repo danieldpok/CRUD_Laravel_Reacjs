@@ -15,14 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 //PUBLIC
-Route::post('logout','Auth\LoginController@logout');
-
+Route::post('/usuarios/logout', 'App\Http\Controllers\API\UsuariosController@logout');
 
 //PRIVATE
 Route::group(['middleware' => ['auth:sanctum']], function () {
-
 Route::get('/catalogos/tecnicos', 'App\Http\Controllers\API\CatalogosController@listTecnicos');
-
 });
 
 
@@ -108,6 +105,7 @@ Route::post('/bandejaRevision/Documentacion/{id}', 'App\Http\Controllers\API\Ban
 Route::post('/bandejaRevision/Documentacion/{id}/{servicio}', 'App\Http\Controllers\API\BandejaRevisionController@getDocumentoServicio');
 Route::put('/bandejaRevision/Documentacion/{id}', 'App\Http\Controllers\API\BandejaRevisionController@updateDocumento');
 
+Route::post('/bandejaRevision/revisionCancelar/{id}', 'App\Http\Controllers\API\BandejaRevisionController@revisionCancelar');
 Route::post('/bandejaRevision/Facturacion/list', 'App\Http\Controllers\API\BandejaRevisionController@listFacturacion');
 Route::post('/bandejaRevision/Facturacion/{id}', 'App\Http\Controllers\API\BandejaRevisionController@getFactura');
 Route::put('/bandejaRevision/Facturacion/{id}', 'App\Http\Controllers\API\BandejaRevisionController@updateFactura');
@@ -117,4 +115,10 @@ Route::post('/bandejaPago/listRealizados', 'App\Http\Controllers\API\BandejaPago
 Route::post('/bandejaPago/listCancelados', 'App\Http\Controllers\API\BandejaPagoController@ListPagosCancelados');
 Route::post('/bandejaPago/{id}', 'App\Http\Controllers\API\BandejaPagoController@getPago');
 Route::put('/bandejaPago/{id}', 'App\Http\Controllers\API\BandejaPagoController@UpdatePago');
+//LISTA DE DISTRIBUCION
+Route::get('/listaDistribucion/{idproyecto}/listAll', 'App\Http\Controllers\API\ListaDistribucionController@listDistribucion');
+Route::get('/listaDistribucion/{id}', 'App\Http\Controllers\API\ListaDistribucionController@getlistDistribucion');
+Route::post('/listaDistribucion/{idproyecto}/listAdd', 'App\Http\Controllers\API\ListaDistribucionController@addEmailList');
+Route::put('/listaDistribucion/{idproyecto}', 'App\Http\Controllers\API\ListaDistribucionController@editEmailList');
+Route::delete('/listaDistribucion/{idproyecto}', 'App\Http\Controllers\API\ListaDistribucionController@deleteEmailList');
 

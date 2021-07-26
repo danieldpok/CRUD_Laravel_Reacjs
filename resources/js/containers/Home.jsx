@@ -7,7 +7,7 @@ const Home = () => {
                 <h1 className="display-3">Hola!</h1>
                 <p className="lead">
                     Aplicacion para el control de pagos y proceso administrativo
-        </p>
+                </p>
                 <hr className="my-4" />
                 <div className="row">
                     <div className="col-6">
@@ -42,7 +42,7 @@ const Home = () => {
                             <div className="card-body">
                                 <h4 className="card-title">
                                     proyecto: Nacional Monte de piedad
-                </h4>
+                                </h4>
                                 <p className="card-text">Revisar avances de proyecto</p>
                             </div>
                         </div>

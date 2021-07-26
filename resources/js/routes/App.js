@@ -31,6 +31,7 @@ import BandejaPagadas from "../containers/BandejaActividades/BandejaPagadas";
 import BandejaCanceladas from "../containers/BandejaActividades/BandejaCanceladas";
 import BandejaRevision from "../containers/BandejaRevision/BandejaRevision";
 import ServicioRevision from "../containers/BandejaRevision/ServicioRevision";
+import ServicioCancelacion from "../containers/BandejaRevision/ServicioCancelacion";
 import BandejaRevisionFactura from "../containers/BandejaRevision/BandejaRevisionFactura";
 import BandejaPosPago from "../containers/BandejaPosPago/BandejaPosPago";
 import BandejaPago from "../containers/BandejaPago/BandejaPago";
@@ -38,6 +39,26 @@ import BandejaPagoRealizado from "../containers/BandejaPago/BandejaPagoRealizado
 import BandejaPagoCancelado from "../containers/BandejaPago/BandejaPagoCancelado";
 import Permisos from "../containers/Permisos/Permisos";
 import PermisosEditar from "../containers/Permisos/CambiarPermisos";
+
+import BandejaProv from "../containers/BandejaProveedor/BandejaAct";
+import BandejaProvActProgreso from "../containers/BandejaProveedor/BandejaActProgreso";
+import BandejaProvActCaptura from "../containers/BandejaProveedor/BandejaActCaptura";
+import BandejaProvPendientePago from "../containers/BandejaProveedor/BandejaPendientePago";
+import BandejaProvPendienteFactura from "../containers/BandejaProveedor/BandejaPendienteFactura";
+import BandejaProvPagadas from "../containers/BandejaProveedor/BandejaPagadas";
+import BandejaProvCanceladas from "../containers/BandejaProveedor/BandejaCanceladas";
+
+import BandejaTecPro from "../containers/BandejaTecPro/BandejaAct";
+import BandejaTecProvProgreso from "../containers/BandejaTecPro/BandejaActProgreso";
+import BandejaTecProActCaptura from "../containers/BandejaTecPro/BandejaActCaptura";
+import BandejaTecProPendientePago from "../containers/BandejaTecPro/BandejaPendientePago";
+import BandejaTecProPendienteFactura from "../containers/BandejaTecPro/BandejaPendienteFactura";
+import BandejaTecProPagadas from "../containers/BandejaTecPro/BandejaPagadas";
+import BandejaTecProCanceladas from "../containers/BandejaTecPro/BandejaCanceladas";
+
+import ListaDistribucion from "../containers/ListaDistribucion/ListaDistribucion";
+
+
 
 const App = () => {
     return (
@@ -118,6 +139,11 @@ const App = () => {
                     />
                     <Route
                         exact
+                        path="/bandejaRevision/:id/cancelacion"
+                        component={ServicioCancelacion}
+                    />
+                    <Route
+                        exact
                         path="/bandejaPosPago"
                         component={BandejaPosPago}
                     />
@@ -145,6 +171,41 @@ const App = () => {
                         exact
                         path="/permisos/:id/editar"
                         component={PermisosEditar}
+                    />
+                    <Route exact path="/bandejaProveedor" component={BandejaProv} />
+                    <Route exact path="/bandejaProveedor/pendientePago" component={BandejaProvPendientePago} />
+                    <Route exact path="/bandejaProveedor/pendienteFactura" component={BandejaProvPendienteFactura} />
+                    <Route exact path="/bandejaProveedor/pagadas" component={BandejaProvPagadas} />
+                    <Route exact path="/bandejaProveedor/canceladas" component={BandejaProvCanceladas} />
+                    <Route
+                        exact
+                        path="/bandejaProveedor/:id/progreso"
+                        component={BandejaProvActProgreso}
+                    />
+                    <Route
+                        exact
+                        path="/bandejaProveedor/:id/captura/:idproyecto"
+                        component={BandejaProvActCaptura}
+                    />
+                    <Route exact path="/bandejaTecPro" component={BandejaTecPro} />
+                    <Route exact path="/bandejaTecPro/pendientePago" component={BandejaTecProPendientePago} />
+                    <Route exact path="/bandejaTecPro/pendienteFactura" component={BandejaTecProPendienteFactura} />
+                    <Route exact path="/bandejaTecPro/pagadas" component={BandejaTecProPagadas} />
+                    <Route exact path="/bandejaTecPro/canceladas" component={BandejaTecProCanceladas} />
+                    <Route
+                        exact
+                        path="/bandejaTecPro/:id/progreso"
+                        component={BandejaTecProvProgreso}
+                    />
+                    <Route
+                        exact
+                        path="/bandejaTecPro/:id/captura/:idproyecto"
+                        component={BandejaTecProActCaptura}
+                    />
+                    <Route
+                        exact
+                        path="/proyectos/listaDistribucion/:id"
+                        component={ListaDistribucion}
                     />
                     <Route component={NotFound} />
                 </Switch>

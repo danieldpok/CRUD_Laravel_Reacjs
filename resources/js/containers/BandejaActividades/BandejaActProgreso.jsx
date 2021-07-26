@@ -49,6 +49,7 @@ const BandejaActProgeso = () => {
     rows: [],
   });
 
+
   const getBandejaActividadProgreso = async () => {
     const res = await bandejaActividades.get(id);
     const nuevo = [];
@@ -174,14 +175,7 @@ const BandejaActProgeso = () => {
                     {asignacionServicio.numero_servicios}
                   </label>
                 </div>
-                <div className="form-group col-md-6 mb-2">
-                  <label>Costo por servicio</label>
-                  <label className="form-control">
-                    {asignacionServicio.costo_servicio}
-                  </label>
-                </div>
               </div>
-
               <h4 className="form-section">
                 <FontAwesomeIcon icon="info-circle" /> Comentarios
               </h4>

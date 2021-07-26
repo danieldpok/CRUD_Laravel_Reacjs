@@ -65,6 +65,28 @@ const Navbar = () => {
                 </li>
                 <li className="nav-item">
                     <Link
+                        to="/bandejaTecPro"
+                        className="nav-link text-dark font-italic"
+                    >
+                        <span className="mr-3 text-danger">
+                            <FontAwesomeIcon icon="address-card" />
+                        </span>
+            Bandeja de TecPro
+          </Link>
+                </li>
+                <li className="nav-item">
+                    <Link
+                        to="/bandejaProveedor"
+                        className="nav-link text-dark font-italic"
+                    >
+                        <span className="mr-3 text-danger">
+                            <FontAwesomeIcon icon="address-card" />
+                        </span>
+            Bandeja de Proveedor
+          </Link>
+                </li>
+                <li className="nav-item">
+                    <Link
                         to="/bandejaRevision"
                         className="nav-link text-dark font-italic"
                     >

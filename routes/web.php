@@ -54,6 +54,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/bandejaPosPago', 'App\Http\Controllers\PrincipalHomeController@index');
     Route::get('/bandejaPago', 'App\Http\Controllers\PrincipalHomeController@index');
     Route::get('/permisos', 'App\Http\Controllers\PrincipalHomeController@index');
+    Route::get('/bandejaProveedor', 'App\Http\Controllers\PrincipalHomeController@index');
 
 });
 Route::post('logout','Auth\LoginController@logout');

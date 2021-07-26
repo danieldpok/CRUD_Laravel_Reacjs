@@ -47,16 +47,6 @@ const BandejaAct = () => {
       field: "asignacion",
       width: 50,
     },
-    {
-      label: "",
-      field: "pago",
-      width: 50,
-    },
-    {
-      label: "",
-      field: "cancelar",
-      width: 50,
-    },
   ];
 
   const [datatable, setDatatable] = useState({
@@ -104,27 +94,6 @@ const BandejaAct = () => {
             <i className="fas fa-eye"></i>
           </MDBLink>
         ),
-        pago: (
-          <MDBBtn
-            onClick={() => {
-              onSolicitarRevisionBandejaAsignacion(doc.id_asignacion_actividades);
-            }}
-            className="btn btn-outline-success btn-sm p-2"
-          >
-            <i className="fas fa-hand-holding-usd"></i>
-          </MDBBtn>
-        ),
-        cancelar: (
-          <MDBBtn
-            onClick={() => {
-              onDeleteBandejaAsignacion(doc.id_asignacion_actividades);
-            }}
-            size="sm"
-            color="danger"
-          >
-            <i className="fas fa-trash-alt"></i>
-          </MDBBtn>
-        ),
       });
     });
 
@@ -168,26 +137,6 @@ const BandejaAct = () => {
           className="btn btn-secondary ml-1 p-2"
           disabled={true}
         >Asignaciones Nuevas</button>
-        <Link
-          to={`/bandejaActividades/pendienteFactura`}
-          type="button"
-          className="btn btn-warning ml-1 p-2"
-        >Pendiente Factura</Link>
-        <Link
-          to={`/bandejaActividades/pendientePago`}
-          type="button"
-          className="btn btn-primary ml-1 p-2"
-        >Pendientes de pago</Link>
-        <Link
-          to={`/bandejaActividades/pagadas`}
-          type="button"
-          className="btn btn-info ml-1 p-2"
-        >Pagadas</Link>
-        <Link
-          to={`/bandejaActividades/canceladas`}
-          type="button"
-          className="btn btn-danger ml-1 p-2"
-        >Canceladas</Link>
       </div>
 
       <div className="container-fluid">
