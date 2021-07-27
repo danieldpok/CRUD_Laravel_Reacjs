@@ -9,6 +9,7 @@ import Usuarios from "../containers/Usuarios/Usuarios";
 import UsuarioNuevo from "../containers/Usuarios/UsuarioNuevo";
 import UsuarioEditar from "../containers/Usuarios/UsuarioEditar";
 import UsuarioVer from "../containers/Usuarios/UsuarioVer";
+import UsuarioAsignar from "../containers/Usuarios/UsuarioAsignar";
 import Proyectos from "../containers/Proyectos/Proyectos";
 import ProyectoAsigInfo from "../containers/Proyectos/ProyectoAsigInfo";
 import Roles from '../containers/Roles/Roles';
@@ -70,6 +71,7 @@ const App = () => {
                     <Route exact path="/usuarios/nuevo" component={UsuarioNuevo} />
                     <Route exact path="/usuarios/:id/editar" component={UsuarioEditar} />
                     <Route exact path="/usuarios/:id/ver" component={UsuarioVer} />
+                    <Route exact path="/usuarios/:id/asignar" component={UsuarioAsignar} />
                     <Route exact path="/proyectos" component={Proyectos} />
                     <Route exact path="/proyectos/asignarInformacion/:id" component={ProyectoAsigInfo} />
                     <Route exact path="/roles" component={Roles} />

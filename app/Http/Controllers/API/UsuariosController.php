@@ -25,6 +25,28 @@ class UsuariosController extends Controller
         return $response;
     }
 
+    public function listAsignacion ($id){
+        $data = User::with("Persona")
+        ->where('estatus', '!=',2)
+        ->where('id_asignacion', $id)
+        ->get();
+        $response['data'] = $data;
+        $response['success'] = true;
+        return $response;
+    }
+
+    public function ListSelectAsignacion ($id){
+        $data = User::with("Persona")
+        ->where('estatus', '!=',2)
+        ->where('id_asignacion', 0)
+        ->where('id', '!=', $id)
+        ->get();
+        $response['data'] = $data;
+        $response['success'] = true;
+        return $response;
+    }
+
+
     public function create(CreateUsuarioRequest $request){
 
         $result = DB::transaction(function () use ($request) {
@@ -221,5 +243,59 @@ class UsuariosController extends Controller
 
     }
 
+    public function addAsignacion(Request $request,$id){
+
+        $result = DB::transaction(function () use ($request,$id) {
+
+            try {
+
+                $usuario = User::find($request["tecnico"]);
+                $usuario->id_asignacion = $id;
+                $usuario->save();
+
+                $response['message'] = "Save Succes";
+                $response['success'] = true;
+
+
+            } catch (\Exception $e) {
+                DB::rollback();
+                $response['message'] = $e->getMessage();
+                $response['success'] = false;
+            }
+
+            return $response;
+        });
+
+        return $result;
+
+    }
+
+
+    public function removeAsignacion(Request $request,$id){
+
+        $result = DB::transaction(function () use ($request,$id) {
+
+            try {
+
+                $usuario = User::find($id);
+                $usuario->id_asignacion = 0;
+                $usuario->save();
+
+                $response['message'] = "Save Succes";
+                $response['success'] = true;
+
+
+            } catch (\Exception $e) {
+                DB::rollback();
+                $response['message'] = $e->getMessage();
+                $response['success'] = false;
+            }
+
+            return $response;
+        });
+
+        return $result;
+
+    }
 
 }

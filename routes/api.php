@@ -54,10 +54,15 @@ Route::put('/catalogos/preguntas/{id}', 'App\Http\Controllers\API\CatalogosContr
 Route::delete('/catalogos/preguntas/{id}', 'App\Http\Controllers\API\CatalogosController@deletePregunta');
 //USUARIOS
 Route::get('/usuarios/list', 'App\Http\Controllers\API\UsuariosController@list');
+Route::get('/usuarios/asignacion/{id}', 'App\Http\Controllers\API\UsuariosController@listAsignacion');
+Route::get('/usuarios/listSelectAsignacion/{id}', 'App\Http\Controllers\API\UsuariosController@ListSelectAsignacion');
 Route::get('/usuarios/get/{id}', 'App\Http\Controllers\API\UsuariosController@get');
 Route::post('/usuarios/create', 'App\Http\Controllers\API\UsuariosController@create');
 Route::put('/usuarios/edit/{id}', 'App\Http\Controllers\API\UsuariosController@edit');
 Route::put('/usuarios/delete/{id}', 'App\Http\Controllers\API\UsuariosController@delete');
+Route::post('/usuarios/addAsignacion/{id}', 'App\Http\Controllers\API\UsuariosController@addAsignacion');
+Route::post('/usuarios/removeAsignacion/{id}', 'App\Http\Controllers\API\UsuariosController@removeAsignacion');
+
 //PROYECTOS
 Route::get('/proyectos/list', 'App\Http\Controllers\API\ProyectosController@listProyectos');
 Route::get('/proyectos/{id}', 'App\Http\Controllers\API\ProyectosController@getProyecto');

@@ -75,5 +75,38 @@ usuarios.logout = async () => {
     return res;
 }
 
+usuarios.listAsignacion = async (idUsuario) => {
+    const UrlGet = baseUrl + "/asignacion/" + idUsuario
+    const res = await axios.get(UrlGet)
+        .then(response => { return response.data })
+        .catch(error => { return error; })
+    return res;
+}
+
+usuarios.listSelectAsignacion = async (idUsuario) => {
+    const UrlGet = baseUrl + "/listSelectAsignacion/" + idUsuario
+    const res = await axios.get(UrlGet)
+        .then(response => { return response.data })
+        .catch(error => { return error; })
+    return res;
+}
+
+
+usuarios.addAsignacion = async (data, idUsuario) => {
+    const UrlCreate = baseUrl + "/addAsignacion/" + idUsuario
+    const res = await axios.post(UrlCreate, data)
+        .then(response => { return response.data })
+        .catch(error => { return error.response; })
+    return res;
+}
+
+usuarios.removeAsignacion = async (id) => {
+    const UrlDelete = baseUrl + "/removeAsignacion/" + id
+    const res = await axios.post(UrlDelete, id)
+        .then(response => { return response.data })
+        .catch(error => { return error; })
+    return res;
+}
+
 
 export default usuarios

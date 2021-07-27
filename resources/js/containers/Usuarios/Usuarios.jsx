@@ -44,6 +44,11 @@ const Usuarios = () => {
     },
     {
       label: "",
+      field: "asignar",
+      width: 25,
+    },
+    {
+      label: "",
       field: "ver",
       width: 25,
     },
@@ -80,9 +85,18 @@ const Usuarios = () => {
         nombre: doc.persona.nombre,
         usuario: doc.name,
         email: doc.email,
+        idrol: doc.id_rol,
         rol: doc.cat_roles.rol,
         telefono: doc.persona.telefono1,
         lugar: doc.direccion_d.estado.nombre,
+        asignar: (
+          <MDBLink
+            to={`/usuarios/${doc.id}/asignar`}
+            className="btn btn-outline-primary btn-sm p-2"
+          >
+            <i className="fas fa-bullseye"></i>
+          </MDBLink>
+        ),
         ver: (
           <MDBLink
             to={`/usuarios/${doc.id}/ver`}
