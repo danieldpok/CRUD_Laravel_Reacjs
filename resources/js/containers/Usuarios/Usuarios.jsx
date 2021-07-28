@@ -80,23 +80,28 @@ const Usuarios = () => {
   const getUsuarios = async () => {
     const res = await usuariosServices.list();
     const nuevo = [];
+    const asig = "";
     res.data.forEach((doc) => {
+      if (doc.id_rol == 4) {
+        const asig = "";
+        console.log(doc.id_rol);
+      } else {
+        const asig = "";
+      }
       nuevo.push({
         nombre: doc.persona.nombre,
         usuario: doc.name,
         email: doc.email,
-        idrol: doc.id_rol,
         rol: doc.cat_roles.rol,
         telefono: doc.persona.telefono1,
         lugar: doc.direccion_d.estado.nombre,
-        asignar: (
+        asignar: doc.id_rol === 2 ? (
           <MDBLink
             to={`/usuarios/${doc.id}/asignar`}
             className="btn btn-outline-primary btn-sm p-2"
           >
             <i className="fas fa-bullseye"></i>
-          </MDBLink>
-        ),
+          </MDBLink>) : '',
         ver: (
           <MDBLink
             to={`/usuarios/${doc.id}/ver`}

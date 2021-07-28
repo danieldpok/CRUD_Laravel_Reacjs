@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 class BandejaActividadController extends Controller
 {
     public function listBandejaActividades (Request $request, $estatus){
-        $data = AsignacionActividad::with("user_id","id_proyecto","id_cat_servicio","localidad","servicios" )
+        $data = AsignacionActividad::with("user_id","id_proyecto","id_cat_servicio","localidad","servicios","CuentaBancaria" )
             ->where('estatus', $estatus)
             //->where('user_id',$request['user_id'])
             ->get();

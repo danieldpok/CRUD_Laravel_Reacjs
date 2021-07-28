@@ -1,13 +1,49 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { Button } from '@material-ui/core';
 import Rutas from "../../components/Rutas";
 import { MDBBtn, MDBIcon, MDBLink } from "mdbreact";
 import Tabla from "../../components/Tabla";
 import { toast } from "react-toastify";
+import Modal from 'react-bootstrap/Modal'
 import bandejaActividades from "../../components/services/BandejaActividades"
 
+function MyVerticallyCenteredModal(props) {
+  return (
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Cuenta Bancaria
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <p>Banco: {props.banco}</p>
+        <p>Nombre: {props.nombre}</p>
+        <p>CLABE: {props.clabe}</p>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={props.onHide}>Close</Button>
+      </Modal.Footer>
+    </Modal>
+  );
+}
+
+
 const BandejaPago = () => {
+  const [modalShow, setModalShow] = useState(false);
+  const [cuenta, setCuenta] = useState("");
+
   const columnas = [
+    {
+      label: "IdAsig",
+      field: "idasig",
+      width: 150,
+    },
     {
       label: "Proyecto",
       field: "proyecto",
@@ -28,6 +64,11 @@ const BandejaPago = () => {
       width: 200,
     },
     {
+      label: "Total Pagar",
+      field: "total_pagar",
+      width: 200,
+    },
+    {
       label: "",
       field: "servicios",
       width: 50,
@@ -35,6 +76,11 @@ const BandejaPago = () => {
     {
       label: "",
       field: "autorizar",
+      width: 50,
+    },
+    {
+      label: "",
+      field: "datos_pago",
       width: 50,
     },
     {
@@ -61,24 +107,28 @@ const BandejaPago = () => {
     }
   };
 
-  const onSolicitarAccion = async (id) => {
-    if (window.confirm("Seguro que desea autorizar el pago")) {
-      const estatus = 11;
-      const res = await bandejaActividades.revisionAsignacion(id, estatus);
-      toast("Pago Autorizado", { type: "success", autoClose: 2000 });
-      await getAsignaciones(estatusActividad);
-    }
-  };
 
   const getAsignaciones = async (estatusActividad) => {
+
     const res = await bandejaActividades.list(estatusActividad);
     const nuevo = [];
 
     res.data.forEach((doc) => {
       nuevo.push({
+        idasig: doc.id_asignacion_actividades,
         proyecto: doc.id_proyecto.nombre_proyecto,
         localidad: doc.localidad.nombre,
         equipo_finalizado: doc.numero_servicios,
+        total_pagar: doc.numero_servicios * doc.costo_servicio,
+        datos_pago: (
+          <MDBBtn
+            onClick={() => { setModalShow(true); setCuenta({ nombre: doc.cuenta_bancaria.nombre, clabe: doc.cuenta_bancaria.clabe, banco: doc.cuenta_bancaria.banco }) }}
+            size="sm"
+            color="primary"
+          >
+            <i className="fas fa-wallet"></i>
+          </MDBBtn>
+        ),
         servicios: (
           <MDBLink
             to={`/bandejaRevision/${doc.id_asignacion_actividades}/revision`}
@@ -88,14 +138,12 @@ const BandejaPago = () => {
           </MDBLink>
         ),
         autorizar: (
-          <MDBBtn
-            onClick={() => {
-              onSolicitarAccion(doc.id_asignacion_actividades);
-            }}
+          <MDBLink
+            to={`/bandejaPago/${doc.id_asignacion_actividades}/autorizar`}
             className="btn btn-outline-success btn-sm p-2"
           >
             <i className="fas fa-check-circle"></i>
-          </MDBBtn>
+          </MDBLink>
         ),
         cancelar: (
           <MDBBtn
@@ -125,6 +173,14 @@ const BandejaPago = () => {
   return (
     <div className="BandejaAct">
       <Rutas ruta={"Bandeja de Pago"} />
+
+      <MyVerticallyCenteredModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        nombre={cuenta.nombre}
+        banco={cuenta.banco}
+        clabe={cuenta.clabe}
+      />
 
       <div className="d-flex ">
         <button

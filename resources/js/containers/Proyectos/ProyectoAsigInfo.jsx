@@ -23,16 +23,15 @@ const ProyectoAsigInfo = () => {
   const history = useHistory();
 
   /*
-  const cambioBase64 = async (file) => {
-    const reader = new FileReader();
-    reader.onload = function () {
-      let binaryString = reader.result;
-      const result1 = btoa(binaryString);
-      console.log(result1);
-      setImageup(result1);
+    const cambioBase64 = async (file) => {
+      const reader = new FileReader();
+      reader.onload = function () {
+        let binaryString = reader.result;
+        const result1 = btoa(binaryString);
+        return result1;
+      }
+      reader.readAsBinaryString(file);
     }
-    reader.readAsBinaryString(file);
-  }
   */
 
   const hSubmit = async () => {
@@ -65,6 +64,7 @@ const ProyectoAsigInfo = () => {
         history.push("/proyectos");
       }
       else {
+        console.log(res);
         setButtonState(false);
         if (res.data) {
           _.forEach(res.data.errors, function (r) {
@@ -127,7 +127,7 @@ const ProyectoAsigInfo = () => {
       <div className="card-content collpase show">
         <div className="card-body">
           <div className="card-text"></div>
-          <form className="form" ref={formInfoProyecto}>
+          <form className="form" ref={formInfoProyecto} encType="multipart/form-data">
             <div className="form-actions text-right">
               <Link
                 to="/proyectos"
@@ -223,13 +223,10 @@ const ProyectoAsigInfo = () => {
                 </div>
                 <div className="form-group col-md-6 mb-2">
                   <label>Logotipo</label>
-                  <input
-                    type="file"
-                    id="logotipo"
-                    className="form-control-file"
-                    name="logotipo"
-                    accept=".jpeg, .png, .jpg"
-                  />
+                  <div className="custom-file">
+                    <input type="file" className="form-control custom-file-input" name="logotipo" id="logotipo" />
+                    <label className="form-control custom-file-label">Examinar</label>
+                  </div>
                 </div>
               </div>
               <h4 className="form-section">

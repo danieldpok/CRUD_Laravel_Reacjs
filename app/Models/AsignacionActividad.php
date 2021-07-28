@@ -38,5 +38,10 @@ class AsignacionActividad extends Model
     public function factura(){
         return $this->belongsTo(Factura::class, 'id_asignacion_actividades', 'id_asignacion_actividades');
     }
+
+    public function CuentaBancaria(){
+        return $this->belongsTo(CuentaBancaria::class, 'user_id','id_cuenta_bancaria');
+    }
+
 }
 

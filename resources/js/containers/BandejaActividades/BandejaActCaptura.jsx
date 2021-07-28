@@ -338,11 +338,22 @@ const BandejaActCaptura = () => {
                   />
                 </div>
               </div>
+              <h4 className="form-section">
+                <FontAwesomeIcon icon="info-circle" /> Adjuntar archivo
+              </h4>
+              <div className="row">
+                <div className="form-group col-12 mb-2">
+                  <div class="custom-file">
+                    <input type="file" className="form-control custom-file-input" id="validatedCustomFile" />
+                    <label className="form-control custom-file-label" for="validatedCustomFile">Examinar</label>
+                  </div>
+                </div>
+              </div>
             </div>
           </form>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

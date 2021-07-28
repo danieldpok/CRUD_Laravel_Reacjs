@@ -105,9 +105,23 @@ class ProyectosController extends Controller
                 $proyecto->nombre_encargado = $request["nombre_encargado"];
                 $proyecto->telefono = $request["telefono"];
                 $proyecto->email_encargado = $request["email"];
-                $proyecto->logotipo = $request["logotipo"];
                 $proyecto->comentarios = $request["comentarios"];
                 $proyecto->leyenda_responsiva = $request["responsiva"];
+
+                //check file
+            if ($request->hasFile('logotipo'))
+            {
+                $file      = $request->file('logotipo');
+                $filename  = $file->getClientOriginalName();
+                $extension = $file->getClientOriginalExtension();
+                $picture   = date('His').'-'.$filename;
+                $proyecto->logotipo = $picture;
+                //move image to public/img folder
+                $file->move(public_path('img'), $picture);
+            }else{
+                $proyecto->logotipo = "...";
+            }
+
                 $proyecto->save();
 
                 $direccion = Proyectos::find($id)->Direccion;

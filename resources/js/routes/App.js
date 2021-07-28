@@ -36,6 +36,7 @@ import ServicioCancelacion from "../containers/BandejaRevision/ServicioCancelaci
 import BandejaRevisionFactura from "../containers/BandejaRevision/BandejaRevisionFactura";
 import BandejaPosPago from "../containers/BandejaPosPago/BandejaPosPago";
 import BandejaPago from "../containers/BandejaPago/BandejaPago";
+import BandejaPagoAutorizar from "../containers/BandejaPago/BandejaPagoAutorizar";
 import BandejaPagoRealizado from "../containers/BandejaPago/BandejaPagoRealizado";
 import BandejaPagoCancelado from "../containers/BandejaPago/BandejaPagoCancelado";
 import Permisos from "../containers/Permisos/Permisos";
@@ -153,6 +154,11 @@ const App = () => {
                         exact
                         path="/bandejaPago"
                         component={BandejaPago}
+                    />
+                    <Route
+                        exact
+                        path="/bandejaPago/:id/autorizar"
+                        component={BandejaPagoAutorizar}
                     />
                     <Route
                         exact

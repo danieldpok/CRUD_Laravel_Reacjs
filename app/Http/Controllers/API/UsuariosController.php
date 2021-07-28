@@ -40,6 +40,7 @@ class UsuariosController extends Controller
         ->where('estatus', '!=',2)
         ->where('id_asignacion', 0)
         ->where('id', '!=', $id)
+        ->where('id_rol', '!=', 2)
         ->get();
         $response['data'] = $data;
         $response['success'] = true;
