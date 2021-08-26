@@ -96,15 +96,15 @@ const BandejaPagoRealizado = () => {
       <Rutas ruta={"Bandeja de Pago"} />
 
       <div className="d-flex ">
-        <button
-          className="btn btn-primary ml-1 p-2"
-          disabled={true}
-        >Bandeja de Pago </button>
         <Link
-          to={`/bandejaPagoRealizado`}
+          to={`/bandejaPago`}
           type="button"
+          className="btn btn-primary ml-1 p-2"
+        >Bandeja de Pago</Link>
+        <button
           className="btn btn-warning ml-1 p-2"
-        >Pagos Realizados</Link>
+          disabled={true}
+        >Pagos Realizados</button>
         <Link
           to={`/bandejaPagoCancelado`}
           type="button"

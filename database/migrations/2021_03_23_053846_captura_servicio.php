@@ -46,8 +46,10 @@ class CapturaServicio extends Migration
                 8=Solicitar VoBo de Factura
                 9=VoBo de Factura -- se visualiza para que puedan autorizar el pago
                 10=Pendiente de pago
-                11=Servicio pagado
+                11=Servicio pagado finalizado
                 12=Cancelado
+                13=Servicio pagado pero requiere complemento
+                14=Servicio pagado adjuntando complemento.
              */
             $table->timestamps();
         });

@@ -96,20 +96,20 @@ const BandejaPagoCancelado = () => {
       <Rutas ruta={"Bandeja de Pago"} />
 
       <div className="d-flex ">
-        <button
+        <Link
+          to={`/bandejaPago`}
+          type="button"
           className="btn btn-primary ml-1 p-2"
-          disabled={true}
-        >Bandeja de Pago </button>
+        >Bandeja de Pago</Link>
         <Link
           to={`/bandejaPagoRealizado`}
           type="button"
           className="btn btn-warning ml-1 p-2"
         >Pagos Realizados</Link>
-        <Link
-          to={`/bandejaPagoCancelado`}
-          type="button"
+        <button
           className="btn btn-danger ml-1 p-2"
-        >Pagos Cancelados</Link>
+          disabled={true}
+        >Pagos Cancelados</button>
       </div>
 
       <div className="container-fluid">

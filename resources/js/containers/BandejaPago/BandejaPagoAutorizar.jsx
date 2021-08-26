@@ -21,7 +21,6 @@ const BandejaPagoAutorizar = () => {
 
     try {
       const estatus = 11;
-      //const res = await asignacionActividadesServices.createAsignacion(formDara);
       const res = await bandejaActividades.revisionAsignacion(id, estatus);
       if (res.success) {
         toast("Pago Autorizado", { type: "success", autoClose: 2000 });
@@ -71,7 +70,7 @@ const BandejaPagoAutorizar = () => {
           <form className="form" ref={form}>
             <div className="form-actions text-right">
               <Link
-                to="/asignacionActividades"
+                to="/bandejaPago"
                 type="button"
                 className="btn btn-warning mr-1"
               >

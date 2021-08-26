@@ -22,6 +22,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 Route::get('/catalogos/tecnicos', 'App\Http\Controllers\API\CatalogosController@listTecnicos');
 });
 
+//UPDATECSV
+Route::post('/catalogos/createServicetag/create', 'App\Http\Controllers\API\ServiceTag@importCsv');
 
 //CATALOGOS PARA FORM
 Route::get('/catalogos/proyectos', 'App\Http\Controllers\API\ProyectosController@listProyectos');

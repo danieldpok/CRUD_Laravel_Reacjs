@@ -59,6 +59,7 @@ import BandejaTecProPagadas from "../containers/BandejaTecPro/BandejaPagadas";
 import BandejaTecProCanceladas from "../containers/BandejaTecPro/BandejaCanceladas";
 
 import ListaDistribucion from "../containers/ListaDistribucion/ListaDistribucion";
+import ImportCSV from "../containers/Utilerias/ImportCSV";
 
 
 
@@ -214,6 +215,11 @@ const App = () => {
                         exact
                         path="/proyectos/listaDistribucion/:id"
                         component={ListaDistribucion}
+                    />
+                    <Route
+                        exact
+                        path="/utilerias"
+                        component={ImportCSV}
                     />
                     <Route component={NotFound} />
                 </Switch>

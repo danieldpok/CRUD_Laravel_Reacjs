@@ -13,6 +13,16 @@ class ServicetagProyectos extends Model
 
     protected  $primaryKey = "id_servicetag_proyectos";
 
+    protected $fillable = [
+        'servicetag',
+        'tipo',
+        'modelo_equipo',
+        'marca',
+        'modelo_monitor',
+        'id_proyecto'
+    ];
+
+
     public $timestamps = true;
 
 }

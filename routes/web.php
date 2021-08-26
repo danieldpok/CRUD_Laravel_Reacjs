@@ -36,6 +36,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 
     Route::get('/', 'App\Http\Controllers\PrincipalHomeController@index');
+    /*
     Route::get('/usuarios', 'App\Http\Controllers\PrincipalHomeController@index');
     Route::get('/usuarios/nuevo', 'App\Http\Controllers\PrincipalHomeController@index');
     Route::get('/usuarios/{id}/editar', 'App\Http\Controllers\PrincipalHomeController@index');
@@ -55,6 +56,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/bandejaPago', 'App\Http\Controllers\PrincipalHomeController@index');
     Route::get('/permisos', 'App\Http\Controllers\PrincipalHomeController@index');
     Route::get('/bandejaProveedor', 'App\Http\Controllers\PrincipalHomeController@index');
+    */
 
 });
 Route::post('logout','Auth\LoginController@logout');

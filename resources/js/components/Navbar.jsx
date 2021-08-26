@@ -30,7 +30,7 @@ const Navbar = () => {
 
             <p className="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">
                 Main
-      </p>
+            </p>
 
             <ul className="nav flex-column bg-white mb-0">
                 <li className="nav-item">
@@ -38,8 +38,8 @@ const Navbar = () => {
                         <span className="mr-3 text-danger">
                             <FontAwesomeIcon icon="th-large" />
                         </span>
-            Home
-          </Link>
+                        Home
+                    </Link>
                 </li>
                 <li className="nav-item">
                     <Link
@@ -49,8 +49,8 @@ const Navbar = () => {
                         <span className="mr-3 text-danger">
                             <FontAwesomeIcon icon="address-card" />
                         </span>
-            Asignacion de Actividades
-          </Link>
+                        Asignacion de Actividades
+                    </Link>
                 </li>
                 <li className="nav-item">
                     <Link
@@ -60,8 +60,8 @@ const Navbar = () => {
                         <span className="mr-3 text-danger">
                             <FontAwesomeIcon icon="address-card" />
                         </span>
-            Bandeja de Actividades
-          </Link>
+                        Bandeja de Actividades
+                    </Link>
                 </li>
                 <li className="nav-item">
                     <Link
@@ -71,8 +71,8 @@ const Navbar = () => {
                         <span className="mr-3 text-danger">
                             <FontAwesomeIcon icon="address-card" />
                         </span>
-            Bandeja de TecPro
-          </Link>
+                        Bandeja de TecPro
+                    </Link>
                 </li>
                 <li className="nav-item">
                     <Link
@@ -82,8 +82,8 @@ const Navbar = () => {
                         <span className="mr-3 text-danger">
                             <FontAwesomeIcon icon="address-card" />
                         </span>
-            Bandeja de Proveedor
-          </Link>
+                        Bandeja de Proveedor
+                    </Link>
                 </li>
                 <li className="nav-item">
                     <Link
@@ -93,8 +93,8 @@ const Navbar = () => {
                         <span className="mr-3 text-danger">
                             <FontAwesomeIcon icon="address-card" />
                         </span>
-            Bandeja de Revision
-          </Link>
+                        Bandeja de Revision
+                    </Link>
                 </li>
                 <li className="nav-item">
                     <Link
@@ -104,8 +104,8 @@ const Navbar = () => {
                         <span className="mr-3 text-danger">
                             <FontAwesomeIcon icon="address-card" />
                         </span>
-            Bandeja de PosPagos
-          </Link>
+                        Bandeja de PosPagos
+                    </Link>
                 </li>
                 <li className="nav-item">
                     <Link
@@ -115,14 +115,14 @@ const Navbar = () => {
                         <span className="mr-3 text-danger">
                             <FontAwesomeIcon icon="address-card" />
                         </span>
-            Bandeja de Pagos
-          </Link>
+                        Bandeja de Pagos
+                    </Link>
                 </li>
             </ul>
 
             <p className="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">
                 Configuracion
-      </p>
+            </p>
 
             <ul className="nav flex-column bg-white mb-0">
                 <li className="nav-item">
@@ -130,59 +130,67 @@ const Navbar = () => {
                         <span className="mr-3 text-danger">
                             <FontAwesomeIcon icon="user" />
                         </span>
-            Usuarios
-          </Link>
+                        Usuarios
+                    </Link>
                 </li>
                 <li className="nav-item">
                     <Link to="/roles" className="nav-link text-dark font-italic">
                         <span className="mr-3 text-danger">
                             <FontAwesomeIcon icon="user-tag" />
                         </span>
-            Roles
-          </Link>
+                        Roles
+                    </Link>
                 </li>
                 <li className="nav-item">
                     <Link to="/proyectos" className="nav-link text-dark font-italic">
                         <span className="mr-3 text-danger">
                             <FontAwesomeIcon icon="file-invoice" />
                         </span>
-            Proyectos
-          </Link>
+                        Proyectos
+                    </Link>
                 </li>
                 <p className="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">
                     Catalogos
-        </p>
+                </p>
                 <li className="nav-item">
                     <Link to="/servicios" className="nav-link text-dark font-italic">
                         <span className="mr-3 text-danger">
                             <FontAwesomeIcon icon="stroopwafel" />
                         </span>
-            Servicios
-          </Link>
+                        Servicios
+                    </Link>
                 </li>
                 <li className="nav-item">
                     <Link to="/tipoAnexos" className="nav-link text-dark font-italic">
                         <span className="mr-3 text-danger">
                             <FontAwesomeIcon icon="stroopwafel" />
                         </span>
-            Tipo de Anexos
-          </Link>
+                        Tipo de Anexos
+                    </Link>
                 </li>
                 <li className="nav-item">
                     <Link to="/preguntas" className="nav-link text-dark font-italic">
                         <span className="mr-3 text-danger">
                             <FontAwesomeIcon icon="stroopwafel" />
                         </span>
-            Preguntas
-          </Link>
+                        Preguntas
+                    </Link>
                 </li>
                 <li className="nav-item">
                     <Link to="/permisos" className="nav-link text-dark font-italic">
                         <span className="mr-3 text-danger">
                             <FontAwesomeIcon icon="stroopwafel" />
                         </span>
-            Permisos
-          </Link>
+                        Permisos
+                    </Link>
+                </li>
+                <li className="nav-item">
+                    <Link to="/utilerias" className="nav-link text-dark font-italic">
+                        <span className="mr-3 text-danger">
+                            <FontAwesomeIcon icon="stroopwafel" />
+                        </span>
+                        Utilerias
+                    </Link>
                 </li>
             </ul>
         </div>
